@@ -1,0 +1,10 @@
+# Planning / drafting notes — kept local, not published
+docs/
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+*.swp

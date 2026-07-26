@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tianchu Zeng — Machine Learning for Brain Imaging &amp; Computational Neuroscience</title>
+<meta name="description" content="Tianchu Zeng is a PhD candidate in Electrical &amp; Computer Engineering at the National University of Singapore, working on reliable machine learning for brain imaging, computational neuroscience, and complex scientific systems.">
+<meta name="author" content="Tianchu Zeng">
+<link rel="canonical" href="https://TianCZeng.github.io/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tianchu Zeng">
+<meta property="og:description" content="PhD candidate working on reliable machine learning for brain imaging, computational neuroscience, and complex scientific systems.">
+<meta property="og:url" content="https://TianCZeng.github.io/">
+
+<style>
+:root {
+  --bg: #ffffff;
+  --bg-alt: #f6f7f9;
+  --bg-card: #ffffff;
+  --text: #1a1d21;
+  --text-muted: #5b6472;
+  --border: #e2e6ec;
+  --accent: #1d4ed8;
+  --accent-soft: #eef2ff;
+  --shadow: 0 1px 2px rgba(16, 24, 40, .05), 0 8px 24px rgba(16, 24, 40, .04);
+  --maxw: 46rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1115;
+    --bg-alt: #14171d;
+    --bg-card: #16191f;
+    --text: #e8eaed;
+    --text-muted: #9aa4b2;
+    --border: #262b33;
+    --accent: #8ab4ff;
+    --accent-soft: #1a2233;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 1.25rem; }
+
+/* ---------- navigation ---------- */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: .7rem 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .4rem 1.1rem;
+}
+
+.nav-name {
+  font-weight: 650;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-right: auto;
+}
+
+.nav a:not(.nav-name) {
+  font-size: .93rem;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.nav a:not(.nav-name):hover { color: var(--accent); }
+
+/* ---------- sections ---------- */
+
+section { padding: 3.25rem 0; border-top: 1px solid var(--border); }
+section:first-of-type { border-top: 0; }
+
+h1 {
+  font-size: clamp(2rem, 6vw, 2.6rem);
+  line-height: 1.15;
+  letter-spacing: -.025em;
+  margin: 0 0 .4rem;
+}
+
+h2 {
+  font-size: 1.35rem;
+  letter-spacing: -.015em;
+  margin: 0 0 1.4rem;
+}
+
+h3 {
+  font-size: 1.03rem;
+  margin: 0 0 .35rem;
+}
+
+h4 {
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--text-muted);
+  margin: 2rem 0 .85rem;
+  font-weight: 600;
+}
+
+p { margin: 0 0 1rem; }
+p:last-child { margin-bottom: 0; }
+
+.lede { font-size: 1.12rem; color: var(--text-muted); margin-bottom: .35rem; }
+.muted { color: var(--text-muted); }
+.small { font-size: .9rem; }
+
+/* ---------- hero ---------- */
+
+.hero { padding-top: 3.75rem; }
+
+.hero-role {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin: 0 0 1.1rem;
+}
+
+.hero-pitch { font-size: 1.08rem; max-width: 38rem; }
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin: 1.6rem 0 1.1rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: .5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: .93rem;
+  font-weight: 500;
+  color: var(--text);
+  background: var(--bg-card);
+  box-shadow: var(--shadow);
+}
+
+.btn:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  .btn-primary { color: #0f1115; }
+}
+
+.btn-primary:hover { color: #fff; opacity: .9; }
+
+@media (prefers-color-scheme: dark) {
+  .btn-primary:hover { color: #0f1115; }
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .3rem .9rem;
+  font-size: .93rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ---------- cards ---------- */
+
+.cards { display: grid; gap: .9rem; }
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.05rem 1.15rem;
+  box-shadow: var(--shadow);
+}
+
+.card p { font-size: .96rem; color: var(--text-muted); margin: 0; }
+
+.card-meta {
+  font-size: .85rem;
+  color: var(--text-muted);
+  margin-top: .7rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .3rem .55rem;
+  align-items: baseline;
+}
+
+.tag {
+  display: inline-block;
+  font-size: .74rem;
+  font-weight: 600;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  padding: .12rem .45rem;
+  border-radius: 5px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* ---------- publications ---------- */
+
+ol.pubs {
+  margin: 0;
+  padding-left: 1.4rem;
+}
+
+ol.pubs li {
+  margin-bottom: 1.05rem;
+  font-size: .96rem;
+  line-height: 1.55;
+}
+
+ol.pubs li::marker { color: var(--text-muted); }
+
+.pub-title { font-weight: 600; }
+.pub-venue { font-style: italic; }
+
+.me { font-weight: 700; }
+
+.footnote {
+  font-size: .85rem;
+  color: var(--text-muted);
+  margin-top: 1.5rem;
+  padding-top: .9rem;
+  border-top: 1px solid var(--border);
+}
+
+/* ---------- talks ---------- */
+
+.talks { list-style: none; padding: 0; margin: 0; }
+
+.talks li {
+  padding: .75rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: .96rem;
+}
+
+.talks li:last-child { border-bottom: 0; }
+.talks strong { display: block; font-weight: 600; }
+.talks span { color: var(--text-muted); font-size: .9rem; }
+
+/* ---------- contact ---------- */
+
+dl.contact {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: .45rem 1.1rem;
+  margin: 1.2rem 0 0;
+  font-size: .96rem;
+}
+
+dl.contact dt { color: var(--text-muted); }
+dl.contact dd { margin: 0; }
+
+/* ---------- footer ---------- */
+
+footer {
+  border-top: 1px solid var(--border);
+  background: var(--bg-alt);
+  padding: 2rem 0;
+  font-size: .9rem;
+  color: var(--text-muted);
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+}
+
+.skip:focus {
+  left: .5rem;
+  top: .5rem;
+  z-index: 20;
+  background: var(--bg-card);
+  padding: .5rem .8rem;
+  border-radius: 6px;
+  border: 1px solid var(--accent);
+}
+
+@media (max-width: 34rem) {
+  body { font-size: 16px; }
+  section { padding: 2.5rem 0; }
+  .nav-name { margin-right: 0; width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="nav" aria-label="Main">
+  <div class="nav-inner">
+    <a class="nav-name" href="#top">Tianchu Zeng</a>
+    <a href="#about">About</a>
+    <a href="#research">Research &amp; Publications</a>
+    <a href="#beyond">Beyond Research</a>
+    <a href="#contact">CV / Contact</a>
+  </div>
+</nav>
+
+<main id="main">
+
+<!-- ================= HOME ================= -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <h1>Tianchu Zeng</h1>
+    <p class="hero-role">PhD candidate in Electrical &amp; Computer Engineering at the National University of Singapore.</p>
+    <p class="hero-pitch">I study how machine learning can help us model and understand the brain, while developing more reliable methods for evaluating biomedical machine learning.</p>
+
+    <div class="btn-row">
+      <a class="btn btn-primary" href="#research">Explore my research</a>
+      <a class="btn" href="#publications">View publications</a>
+      <!-- TODO: add the CV file (e.g. assets/TianchuZeng-CV.pdf) and point this link at it. -->
+      <a class="btn" href="#contact">Download CV</a>
+    </div>
+
+    <ul class="links">
+      <li><a href="https://orcid.org/0009-0009-0773-4502">ORCID</a></li>
+      <li><a href="https://scholar.google.com/citations?user=gLpj1qIAAAAJ&amp;hl=en">Google Scholar</a></li>
+      <li><a href="https://github.com/TianCZeng">GitHub</a></li>
+      <li><a href="mailto:tianchuzeng@gmail.com">Email</a></li>
+      <!-- Optional: <li><a href="LINKEDIN-URL">LinkedIn</a></li> -->
+    </ul>
+  </div>
+</section>
+
+<!-- ================= CURRENT FOCUS ================= -->
+<section id="focus">
+  <div class="wrap">
+    <h2>Current focus</h2>
+    <div class="cards">
+      <article class="card">
+        <h3>Biophysical brain models</h3>
+        <p>I develop deep-learning methods to make expensive, large-scale brain circuit models more practical to optimize.</p>
+      </article>
+      <article class="card">
+        <h3>Reliable biomedical machine learning</h3>
+        <p>I investigate whether common statistical procedures genuinely support fair and reproducible comparisons between biomedical machine-learning algorithms.</p>
+      </article>
+      <article class="card">
+        <h3>Brain foundation models and scientific ML</h3>
+        <p>I explore how brain foundation models compare with classical methods for predicting meaningful phenotypic traits, and how scientific machine learning can be evaluated responsibly.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SELECTED WORK ================= -->
+<section id="selected">
+  <div class="wrap">
+    <h2>Selected work</h2>
+    <div class="cards">
+      <article class="card">
+        <h3>Optimizing biophysical brain circuit models with deep neural networks</h3>
+        <p>We develop deep-learning methods for optimizing expensive, large-scale biophysical brain circuit models, making complex scientific models more practical to study.</p>
+        <div class="card-meta">
+          <span class="tag">Nature Methods</span>
+          <span>2026 · Accepted in principle</span>
+          <!-- TODO: add verified DOI / publisher link, then uncomment:
+          <span>· <a href="PUBLICATION-LINK-1">Read the paper</a></span>
+          <span>· <a href="POSTER-LINK">View poster</a></span>
+          -->
+        </div>
+      </article>
+
+      <article class="card">
+        <h3>Widespread use of invalid statistical tests in biomedical machine learning</h3>
+        <p>We examine how common statistical practices can undermine algorithm comparisons in biomedical machine learning and make recommendations for more reliable evaluation.</p>
+        <div class="card-meta">
+          <span class="tag">bioRxiv preprint</span>
+          <span>2026</span>
+          <!-- TODO: add verified preprint link, then uncomment:
+          <span>· <a href="PUBLICATION-LINK-6">Read the preprint</a></span>
+          -->
+        </div>
+      </article>
+
+      <article class="card">
+        <h3>Do Brain Foundation Models Perform Better in Phenotypic Prediction than Classical Models?</h3>
+        <p>We study whether brain foundation models offer practical predictive advantages over classical methods, with an emphasis on careful and meaningful evaluation.</p>
+        <div class="card-meta">
+          <span class="tag">In preparation</span>
+          <span>2026 · Preprint forthcoming</span>
+        </div>
+      </article>
+    </div>
+    <p class="small muted" style="margin-top:1.1rem">My work spans biophysical brain modelling, brain imaging, statistical methodology, and machine learning for complex scientific systems. <a href="#publications">Browse the complete publication list</a> to see the research in detail.</p>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="wrap">
+    <h2>About</h2>
+
+    <!-- TODO: add a portrait when ready.
+    <img src="assets/images/tianchu-portrait.jpg" alt="Portrait of Tianchu Zeng" style="max-width:100%;border-radius:10px;margin-bottom:1.5rem">
+    -->
+
+    <p>I am a PhD candidate in Electrical &amp; Computer Engineering at the National University of Singapore, where I work with Prof. BT Thomas Yeo and Prof. Thomas E. Nichols on machine learning in brain imaging. My research focuses on two closely connected questions: how to make complex biophysical brain models more efficient to study, and how to make biomedical machine-learning comparisons more statistically reliable.</p>
+
+    <p>Before starting my PhD, I studied Automation at Tsinghua University. My undergraduate research included multi-agent trajectory prediction with neural networks, as well as projects in EEG analysis and DNA data encryption. Those experiences taught me to enjoy problems that sit between mathematical ideas, computation, and real systems. At NUS, that interest developed into work in computational neuroscience and scientific machine learning.</p>
+
+    <p>I care about research that is useful, reproducible, and honest about uncertainty. When a result is surprising, I like to examine the assumptions behind it, test strong baselines, and make the reasoning clear enough for someone outside the immediate project to follow. I also enjoy building practical tools and communicating technical ideas in a way that invites people into the problem.</p>
+
+    <h4>How I work</h4>
+    <p>I like starting with a precise question and a small experiment that can distinguish between competing explanations. I care about reproducibility because a result becomes more valuable when other people can understand, test, and build on it. In collaboration, I try to contribute careful implementation, clear communication, and connections between ideas that may initially seem to belong to different fields.</p>
+
+    <h4>What I am learning</h4>
+    <p>I am continuing to learn about large-scale model training, scientific machine learning, research infrastructure, and how to communicate technical work to broader audiences. I am especially interested in the space where strong mathematical ideas become reliable, usable computational systems.</p>
+  </div>
+</section>
+
+<!-- ================= RESEARCH ================= -->
+<section id="research">
+  <div class="wrap">
+    <h2>Research</h2>
+
+    <p class="lede">My research sits at the intersection of machine learning, brain imaging, computational neuroscience, and statistical methodology. I am interested in methods that are not only powerful, but also interpretable, computationally practical, and evaluated in a way that supports trustworthy scientific conclusions.</p>
+
+    <h4>Research themes</h4>
+
+    <div class="cards">
+      <article class="card">
+        <h3>Optimizing biophysical brain circuit models</h3>
+        <p>Large-scale biophysical brain models can represent important aspects of brain organization, but they can also be expensive to simulate and optimize. I develop deep-learning methods that make these models more tractable, with the goal of enabling more efficient scientific investigation of complex brain systems.</p>
+      </article>
+      <article class="card">
+        <h3>Statistical validity in biomedical machine learning</h3>
+        <p>Biomedical machine learning often compares many algorithms using cross-validation. I study whether the statistical procedures used in these comparisons support valid conclusions, and how seemingly reasonable evaluation choices can produce misleading rankings or overconfident claims.</p>
+      </article>
+      <article class="card">
+        <h3>Brain imaging and individual variation</h3>
+        <p>I also work on methods for extracting meaningful structure from brain-imaging data, including brain parcellation and prediction of phenotypic traits. This work asks how computational models can capture individual and developmental variation without losing scientific interpretability.</p>
+      </article>
+      <article class="card">
+        <h3>Brain foundation models</h3>
+        <p>Brain foundation models promise to transfer information across datasets and tasks. I am interested in evaluating whether these models actually improve phenotypic prediction over strong classical baselines, and in understanding when their additional complexity is justified.</p>
+      </article>
+    </div>
+
+    <!-- TODO: add a research figure when cleared for publication.
+    <figure style="margin:2rem 0 0">
+      <img src="assets/images/brain-model-optimization.png" alt="Diagram showing deep-learning optimization of a large-scale biophysical brain circuit model" style="max-width:100%;border-radius:10px">
+      <figcaption class="small muted" style="margin-top:.5rem">Research on making large-scale biophysical brain models more practical to optimize.</figcaption>
+    </figure>
+    -->
+  </div>
+</section>
+
+<!-- ================= PUBLICATIONS ================= -->
+<section id="publications">
+  <div class="wrap">
+    <h2>Publications</h2>
+
+    <p class="muted small">Published articles, conference proceedings, and public or forthcoming manuscripts.</p>
+
+    <h4>Peer-reviewed journal articles</h4>
+    <!--
+      TODO before launch: wrap each title in a link once the DOI / publisher page is verified, e.g.
+      <a href="https://doi.org/...">Optimizing biophysical large-scale brain circuit models…</a>
+    -->
+    <ol class="pubs">
+      <li>
+        <span class="me">Zeng, T.</span>*, Tian, F.*, Zhang, S., Li, X., Tan, A. P., Larsen, B., … &amp; Yeo, B. T. (2026).
+        <span class="pub-title">Optimizing biophysical large-scale brain circuit models with deep neural networks.</span>
+        <span class="pub-venue">Nature Methods.</span> <strong>Accepted in principle.</strong>
+      </li>
+      <li>
+        Qu, Y. L., Chen, J., Tam, A., Ooi, L. Q. R., Dhamala, E., Cocuzza, C. V., Zhang, S., <span class="me">Zeng, T.</span>, … &amp; Holmes, A. J. (2025).
+        <span class="pub-title">Distinct brain network features predict internalizing and externalizing traits in children, adolescents and adults.</span>
+        <span class="pub-venue">Nature Mental Health</span>, 1–12.
+      </li>
+      <li>
+        Zhang, S., Larsen, B., Sydnor, V. J., <span class="me">Zeng, T.</span>, An, L., Yan, X., … &amp; Yeo, B. T. (2024).
+        <span class="pub-title">In vivo whole-cortex marker of excitation-inhibition ratio indexes cortical maturation and cognitive ability in youth.</span>
+        <span class="pub-venue">Proceedings of the National Academy of Sciences</span>, 121(23), e2318641121.
+      </li>
+    </ol>
+
+    <h4>Peer-reviewed conference proceedings</h4>
+    <ol class="pubs" start="4">
+      <li>
+        Gui, N.*, <span class="me">Zeng, T.</span>*, Hu, J., &amp; Zhang, Y. (2022).
+        <span class="pub-title">Visual-angle Attention Predictor: A multi-agent trajectory predictor based on variational auto-encoder.</span>
+        <span class="pub-venue">22nd COTA International Conference of Transportation Professionals (CICTP 2022)</span>, Changsha, China.
+      </li>
+      <li>
+        <span class="me">Zeng, T.</span>*, Gui, N.*, Hu, J., &amp; Zhang, Y. (2022).
+        <span class="pub-title">Agents Separated Prediction Former: A novel multi-agent trajectory prediction model based on Transformer with 2D input.</span>
+        <span class="pub-venue">22nd ASCE International Conference on Transportation and Development (ICTD 2022)</span>, Seattle, USA.
+      </li>
+    </ol>
+
+    <h4>Preprints and manuscripts</h4>
+    <ol class="pubs" start="6">
+      <li>
+        <span class="me">Zeng, T.</span>*, Li, H.*, Zhang, S.*, Tan, Y. Q., Tian, F., Orban, C., …, Nichols, T.<sup>+</sup>, &amp; Yeo, B. T.<sup>+</sup> (2026).
+        <span class="pub-title">Widespread use of invalid statistical tests in biomedical machine learning.</span>
+        <span class="pub-venue">bioRxiv</span> preprint.
+      </li>
+      <li>
+        Ling, Z., Dong, Z., <span class="me">Zeng, T.</span>, Lin, Y., Li, R., Che, W., Zhang, C., Holmes, A., An, L., Zhang, S., Zhou, J. H., &amp; Yeo, B. T. (2026).
+        <span class="pub-title">Do Brain Foundation Models Perform Better in Phenotypic Prediction than Classical Models?</span>
+        Manuscript in preparation; preprint forthcoming.
+      </li>
+    </ol>
+
+    <p class="footnote">* Equal contribution / co-first author. <sup>+</sup> Co-corresponding author.</p>
+  </div>
+</section>
+
+<!-- ================= TALKS ================= -->
+<section id="talks">
+  <div class="wrap">
+    <h2>Talks and presentations</h2>
+
+    <h4>Invited talks</h4>
+    <ul class="talks">
+      <li>
+        <strong>Optimizing biophysical large-scale brain circuit models</strong>
+        <span>Asia-Pacific Computational and Cognitive Neuroscience Conference (AP-CCN 2025), RIKEN, Japan · Invited talk</span>
+      </li>
+    </ul>
+
+    <h4>Conference presentations and posters</h4>
+    <ul class="talks">
+      <li>
+        <strong>Optimizing biophysical large-scale brain circuit models with deep neural networks</strong>
+        <span>Organization for Human Brain Mapping (OHBM 2026), Bordeaux, France · Poster</span>
+      </li>
+      <li>
+        <strong>Optimizing biophysical large-scale brain circuit models with deep neural networks</strong>
+        <span>NUHS Scientific and Innovation Summit 2026, Singapore · Poster · <strong>Best Poster Award, Basic Science</strong></span>
+      </li>
+      <li>
+        <strong>Optimizing biophysical large-scale brain circuit models with deep neural networks</strong>
+        <span>AI4X 2025, National University of Singapore · Poster</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= BEYOND RESEARCH ================= -->
+<section id="beyond">
+  <div class="wrap">
+    <h2>Beyond Research</h2>
+
+    <p class="lede">Research is a big part of my life, but it is not the whole story. Outside the lab, I enjoy sports, hiking, swimming, and exploring imaginative worlds through games and stories.</p>
+
+    <h4>Sports</h4>
+    <p>I play table tennis, badminton, and basketball. Table tennis has been a particularly important part of my life: I hold China's National Level II Athlete designation in table tennis. I enjoy the combination of quick decisions, movement, technique, and the friendly competitiveness that makes a good game memorable.</p>
+
+    <h4>Outdoors</h4>
+    <p>I also love hiking and swimming. Hiking gives me time to slow down, explore new places, and notice details that are easy to miss during a busy week. Swimming is one of my favourite ways to reset and keep moving.</p>
+
+    <h4>Lord of Mysteries and Whackamon</h4>
+    <p>I am a big fan of <em>Lord of Mysteries</em>. That interest eventually led me to create <a href="https://whackamon.com">Whackamon</a>, a free public mini-game inspired by the joy of making something small and entertaining for other people. The game has received thousands of visits and likes, which has been both surprising and genuinely fun to see.</p>
+    <p>If you are curious, <a href="https://whackamon.com">try Whackamon</a>. It is free, quick to play, and made to be enjoyed.</p>
+
+    <!-- TODO: add a Whackamon screenshot only if you own or have permission to publish the image.
+    <img src="assets/images/whackamon-screenshot.png" alt="Screenshot of the Whackamon mini-game" style="max-width:100%;border-radius:10px;margin-top:1.25rem">
+    -->
+  </div>
+</section>
+
+<!-- ================= CV / CONTACT ================= -->
+<section id="contact">
+  <div class="wrap">
+    <h2>CV / Contact</h2>
+
+    <!-- TODO: replace CV-LINK with the CV file path (e.g. assets/TianchuZeng-CV.pdf) once uploaded. -->
+    <p>For a complete overview of my education, research experience, publications, presentations, awards, teaching, and technical skills, please see my CV.</p>
+
+    <p>I welcome conversations about machine learning, brain imaging, computational neuroscience, statistical methodology, scientific software, and research collaboration. I am also happy to hear from people interested in the ideas or projects shared on this site.</p>
+
+    <dl class="contact">
+      <dt>Email</dt>
+      <dd><a href="mailto:tianchuzeng@gmail.com">tianchuzeng@gmail.com</a></dd>
+      <dt>ORCID</dt>
+      <dd><a href="https://orcid.org/0009-0009-0773-4502">0009-0009-0773-4502</a></dd>
+      <dt>Google Scholar</dt>
+      <dd><a href="https://scholar.google.com/citations?user=gLpj1qIAAAAJ&amp;hl=en">Profile</a></dd>
+      <dt>GitHub</dt>
+      <dd><a href="https://github.com/TianCZeng">TianCZeng</a></dd>
+    </dl>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Outside research, I play table tennis, badminton, and basketball, enjoy hiking and swimming, and make small playful projects. I am also a big fan of <em>Lord of Mysteries</em>—you can try my free mini-game, <a href="https://whackamon.com">Whackamon</a>.</p>
+    <p class="small">© 2026 Tianchu Zeng · <a href="mailto:tianchuzeng@gmail.com">tianchuzeng@gmail.com</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
