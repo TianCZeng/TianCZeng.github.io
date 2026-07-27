@@ -8,313 +8,752 @@
 <meta name="author" content="Tianchu Zeng">
 <link rel="canonical" href="https://TianCZeng.github.io/">
 
-<meta property="og:type" content="website">
+<meta property="og:type" content="profile">
 <meta property="og:title" content="Tianchu Zeng">
 <meta property="og:description" content="PhD candidate working on reliable machine learning for brain imaging, computational neuroscience, and complex scientific systems.">
 <meta property="og:url" content="https://TianCZeng.github.io/">
+<meta property="og:image" content="https://TianCZeng.github.io/assets/images/portrait.jpg">
+<meta name="twitter:card" content="summary">
+
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231e4c8a'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='30' font-weight='700' fill='%23fff' text-anchor='middle'%3ETZ%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+
+<script>
+  // Apply the saved colour theme before first paint to avoid a flash.
+  try {
+    var t = localStorage.getItem('theme');
+    if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+  // Content is only allowed to start hidden for the scroll-reveal when JS is running,
+  // so a script failure can never leave the page blank.
+  document.documentElement.className += ' js';
+</script>
 
 <style>
+/* ==========================================================================
+   1. Design tokens
+   ========================================================================== */
+
 :root {
   --bg: #ffffff;
-  --bg-alt: #f6f7f9;
+  --bg-alt: #f7f8fa;
   --bg-card: #ffffff;
-  --text: #1a1d21;
-  --text-muted: #5b6472;
-  --border: #e2e6ec;
-  --accent: #1d4ed8;
-  --accent-soft: #eef2ff;
-  --shadow: 0 1px 2px rgba(16, 24, 40, .05), 0 8px 24px rgba(16, 24, 40, .04);
-  --maxw: 46rem;
+  --text: #14181d;
+  --text-muted: #59636f;
+  --text-faint: #8b95a1;
+  --border: #e4e8ee;
+  --border-strong: #d3d9e2;
+  --accent: #1e4c8a;
+  --accent-hover: #163a6b;
+  --accent-soft: #eaf0f9;
+  --shadow-sm: 0 1px 2px rgba(16, 24, 40, .04);
+  --shadow: 0 1px 2px rgba(16, 24, 40, .05), 0 10px 28px rgba(16, 24, 40, .05);
+
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "Source Serif 4", "Iowan Old Style", Georgia, "Times New Roman", serif;
+
+  --maxw: 60rem;      /* outer container            */
+  --measure: 42rem;   /* comfortable reading width  */
+  --nav-h: 3.5rem;
 }
 
+/* Dark palette — applied either by system preference or by the manual toggle. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #0f1115;
     --bg-alt: #14171d;
-    --bg-card: #16191f;
-    --text: #e8eaed;
+    --bg-card: #161a20;
+    --text: #e9ecf1;
     --text-muted: #9aa4b2;
-    --border: #262b33;
-    --accent: #8ab4ff;
-    --accent-soft: #1a2233;
-    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+    --text-faint: #77818f;
+    --border: #262b34;
+    --border-strong: #333a45;
+    --accent: #8db4e2;
+    --accent-hover: #a8c7ee;
+    --accent-soft: #182233;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, .35);
+    --shadow: 0 1px 2px rgba(0, 0, 0, .35), 0 10px 28px rgba(0, 0, 0, .3);
   }
 }
 
+:root[data-theme="dark"] {
+  --bg: #0f1115;
+  --bg-alt: #14171d;
+  --bg-card: #161a20;
+  --text: #e9ecf1;
+  --text-muted: #9aa4b2;
+  --text-faint: #77818f;
+  --border: #262b34;
+  --border-strong: #333a45;
+  --accent: #8db4e2;
+  --accent-hover: #a8c7ee;
+  --accent-soft: #182233;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, .35);
+  --shadow: 0 1px 2px rgba(0, 0, 0, .35), 0 10px 28px rgba(0, 0, 0, .3);
+}
+
+/* ==========================================================================
+   2. Base
+   ========================================================================== */
+
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-h) + 1.5rem);
+  -webkit-text-size-adjust: 100%;
+}
 
 body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  font-size: 17px;
-  line-height: 1.65;
+  font-family: var(--font-sans);
+  font-size: 16.5px;
+  line-height: 1.68;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
+a {
+  color: var(--accent);
+  text-decoration: none;
+  text-decoration-color: color-mix(in srgb, var(--accent) 35%, transparent);
+  text-underline-offset: .18em;
+}
+a:hover { color: var(--accent-hover); text-decoration: underline; }
 
-.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 1.25rem; }
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
 
-/* ---------- navigation ---------- */
+img { max-width: 100%; height: auto; }
+
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 1.5rem; }
+.prose { max-width: var(--measure); }
+
+/* ==========================================================================
+   3. Typography
+   ========================================================================== */
+
+h1, h2, h3 { font-family: var(--font-serif); }
+
+h1 {
+  font-size: clamp(2.35rem, 6.5vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -.022em;
+  margin: 0 0 .5rem;
+}
+
+h2 {
+  font-size: clamp(1.6rem, 3.4vw, 2rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -.018em;
+  margin: 0;
+}
+
+h3 {
+  font-size: 1.22rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -.012em;
+  margin: 0 0 .5rem;
+}
+
+/* Small caps-ish sub-heading used inside sections. */
+h4 {
+  font-size: .78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .09em;
+  color: var(--text-faint);
+  margin: 2.4rem 0 .9rem;
+}
+
+p { margin: 0 0 1.05rem; }
+p:last-child { margin-bottom: 0; }
+
+.lede {
+  font-size: 1.14rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  max-width: var(--measure);
+}
+
+.muted { color: var(--text-muted); }
+.small { font-size: .9rem; }
+
+/* ==========================================================================
+   4. Navigation
+   ========================================================================== */
 
 .nav {
   position: sticky;
   top: 0;
-  z-index: 10;
-  background: var(--bg);
-  background: color-mix(in srgb, var(--bg) 88%, transparent);
-  backdrop-filter: saturate(180%) blur(12px);
+  z-index: 50;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
   border-bottom: 1px solid var(--border);
 }
 
 .nav-inner {
   max-width: var(--maxw);
   margin: 0 auto;
-  padding: .7rem 1.25rem;
+  padding: 0 1.5rem;
+  height: var(--nav-h);
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: .4rem 1.1rem;
+  align-items: center;
+  gap: 1rem;
 }
 
 .nav-name {
-  font-weight: 650;
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
   letter-spacing: -.01em;
   color: var(--text);
-  margin-right: auto;
+  white-space: nowrap;
+  flex: none;
+}
+.nav-name:hover { color: var(--accent); text-decoration: none; }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.35rem;
+  margin-left: auto;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.nav-links::-webkit-scrollbar { display: none; }
+
+/* Only fade the edges on narrow screens, where the links actually scroll. */
+@media (max-width: 56rem) {
+  .nav-links {
+    margin-left: 1rem;
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 1rem, #000 calc(100% - 1rem), transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0, #000 1rem, #000 calc(100% - 1rem), transparent 100%);
+  }
 }
 
-.nav a:not(.nav-name) {
-  font-size: .93rem;
+.nav-links a {
+  font-size: .89rem;
+  font-weight: 500;
   color: var(--text-muted);
-  text-decoration: none;
+  white-space: nowrap;
+  padding: .15rem 0;
+  border-bottom: 1.5px solid transparent;
 }
+.nav-links a:hover { color: var(--text); text-decoration: none; }
+.nav-links a.is-active { color: var(--text); border-bottom-color: var(--accent); }
 
-.nav a:not(.nav-name):hover { color: var(--accent); }
+.icon-btn {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: var(--bg-card);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color .15s, border-color .15s;
+}
+.icon-btn:hover { color: var(--accent); border-color: var(--border-strong); }
 
-/* ---------- sections ---------- */
+.i-sun { display: none; }
+.i-moon { display: block; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .i-moon { display: none; }
+  :root:not([data-theme="light"]) .i-sun { display: block; }
+}
+:root[data-theme="dark"] .i-moon { display: none; }
+:root[data-theme="dark"] .i-sun { display: block; }
+:root[data-theme="light"] .i-moon { display: block; }
+:root[data-theme="light"] .i-sun { display: none; }
 
-section { padding: 3.25rem 0; border-top: 1px solid var(--border); }
+/* ==========================================================================
+   5. Section shell
+   ========================================================================== */
+
+section {
+  padding: 4.25rem 0;
+  border-top: 1px solid var(--border);
+  scroll-margin-top: calc(var(--nav-h) + 1rem);
+}
 section:first-of-type { border-top: 0; }
 
-h1 {
-  font-size: clamp(2rem, 6vw, 2.6rem);
-  line-height: 1.15;
-  letter-spacing: -.025em;
-  margin: 0 0 .4rem;
-}
+.sec-head { margin-bottom: 1.85rem; }
 
-h2 {
-  font-size: 1.35rem;
-  letter-spacing: -.015em;
-  margin: 0 0 1.4rem;
-}
-
-h3 {
-  font-size: 1.03rem;
-  margin: 0 0 .35rem;
-}
-
-h4 {
-  font-size: .8rem;
-  text-transform: uppercase;
-  letter-spacing: .07em;
-  color: var(--text-muted);
-  margin: 2rem 0 .85rem;
+.eyebrow {
+  font-size: .74rem;
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--accent);
+  margin: 0 0 .5rem;
 }
 
-p { margin: 0 0 1rem; }
-p:last-child { margin-bottom: 0; }
+/* ==========================================================================
+   6. Hero
+   ========================================================================== */
 
-.lede { font-size: 1.12rem; color: var(--text-muted); margin-bottom: .35rem; }
-.muted { color: var(--text-muted); }
-.small { font-size: .9rem; }
+.hero { padding-top: 4.5rem; padding-bottom: 3.5rem; }
 
-/* ---------- hero ---------- */
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2.25rem;
+  align-items: start;
+}
 
-.hero { padding-top: 3.75rem; }
+@media (min-width: 50rem) {
+  .hero-grid { grid-template-columns: minmax(0, 1fr) 14.5rem; gap: 3.25rem; }
+}
 
 .hero-role {
   font-size: 1.1rem;
   color: var(--text-muted);
-  margin: 0 0 1.1rem;
+  margin: 0 0 1.15rem;
+  max-width: 34rem;
 }
 
-.hero-pitch { font-size: 1.08rem; max-width: 38rem; }
-
-.btn-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .6rem;
-  margin: 1.6rem 0 1.1rem;
+.hero-pitch {
+  font-size: 1.13rem;
+  line-height: 1.6;
+  max-width: 36rem;
+  margin-bottom: 1.3rem;
 }
+
+.hero-facts {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.75rem;
+  font-size: .93rem;
+  color: var(--text-muted);
+  display: grid;
+  gap: .3rem;
+  max-width: 36rem;
+}
+.hero-facts li { display: flex; gap: .6rem; }
+.hero-facts .fact-key {
+  flex: none;
+  width: 6rem;
+  padding-right: .5rem;
+  color: var(--text-faint);
+  font-size: .82rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  padding-top: .18rem;
+}
+
+.portrait {
+  margin: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg-alt);
+  box-shadow: var(--shadow);
+  max-width: 14.5rem;
+}
+.portrait img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+
+@media (max-width: 49.99rem) {
+  .portrait { max-width: 9.5rem; }
+}
+
+/* ==========================================================================
+   7. Buttons and profile links
+   ========================================================================== */
+
+.btn-row { display: flex; flex-wrap: wrap; gap: .6rem; margin: 0 0 1.4rem; }
 
 .btn {
-  display: inline-block;
-  padding: .5rem 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .52rem 1.05rem;
   border-radius: 8px;
-  border: 1px solid var(--border);
-  font-size: .93rem;
+  border: 1px solid var(--border-strong);
+  font-size: .92rem;
   font-weight: 500;
   color: var(--text);
   background: var(--bg-card);
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-sm);
+  transition: border-color .15s, color .15s, background .15s;
 }
-
 .btn:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+.btn svg { flex: none; opacity: .8; }
 
-.btn-primary {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
-}
-
+.btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); color: #fff; }
+:root[data-theme="dark"] .btn-primary,
+:root[data-theme="dark"] .btn-primary:hover { color: #0f1115; }
 @media (prefers-color-scheme: dark) {
-  .btn-primary { color: #0f1115; }
-}
-
-.btn-primary:hover { color: #fff; opacity: .9; }
-
-@media (prefers-color-scheme: dark) {
-  .btn-primary:hover { color: #0f1115; }
+  :root:not([data-theme="light"]) .btn-primary,
+  :root:not([data-theme="light"]) .btn-primary:hover { color: #0f1115; }
 }
 
 .links {
   display: flex;
   flex-wrap: wrap;
-  gap: .3rem .9rem;
-  font-size: .93rem;
+  gap: .35rem 1.1rem;
+  font-size: .92rem;
   list-style: none;
   padding: 0;
   margin: 0;
 }
+.links a { display: inline-flex; align-items: center; gap: .35rem; color: var(--text-muted); }
+.links a:hover { color: var(--accent); }
+.links svg { flex: none; opacity: .75; }
 
-/* ---------- cards ---------- */
+/* ==========================================================================
+   8. News
+   ========================================================================== */
 
-.cards { display: grid; gap: .9rem; }
+.news { list-style: none; padding: 0; margin: 0; max-width: var(--measure); }
 
-.card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 1.05rem 1.15rem;
-  box-shadow: var(--shadow);
-}
-
-.card p { font-size: .96rem; color: var(--text-muted); margin: 0; }
-
-.card-meta {
-  font-size: .85rem;
-  color: var(--text-muted);
-  margin-top: .7rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: .3rem .55rem;
-  align-items: baseline;
-}
-
-.tag {
-  display: inline-block;
-  font-size: .74rem;
-  font-weight: 600;
-  letter-spacing: .03em;
-  text-transform: uppercase;
-  padding: .12rem .45rem;
-  border-radius: 5px;
-  background: var(--accent-soft);
-  color: var(--accent);
-}
-
-/* ---------- publications ---------- */
-
-ol.pubs {
-  margin: 0;
-  padding-left: 1.4rem;
-}
-
-ol.pubs li {
-  margin-bottom: 1.05rem;
-  font-size: .96rem;
-  line-height: 1.55;
-}
-
-ol.pubs li::marker { color: var(--text-muted); }
-
-.pub-title { font-weight: 600; }
-.pub-venue { font-style: italic; }
-
-.me { font-weight: 700; }
-
-.footnote {
-  font-size: .85rem;
-  color: var(--text-muted);
-  margin-top: 1.5rem;
-  padding-top: .9rem;
-  border-top: 1px solid var(--border);
-}
-
-/* ---------- talks ---------- */
-
-.talks { list-style: none; padding: 0; margin: 0; }
-
-.talks li {
-  padding: .75rem 0;
+.news li {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: .9rem;
+  padding: .8rem 0;
   border-bottom: 1px solid var(--border);
   font-size: .96rem;
 }
+.news li:first-child { padding-top: 0; }
+.news li:last-child { border-bottom: 0; padding-bottom: 0; }
 
+.news-date {
+  font-variant-numeric: tabular-nums;
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--text-faint);
+  padding-top: .12rem;
+}
+
+@media (max-width: 34rem) {
+  .news li { grid-template-columns: 1fr; gap: .15rem; }
+}
+
+/* ==========================================================================
+   9. Selected work
+   ========================================================================== */
+
+.works { display: grid; gap: 3rem; }
+
+/* Each entry is [thumbnail | text]. The figure is a small label, not a display
+   figure — click it to open the full-resolution version. */
+.work {
+  padding-top: 3rem;
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.15rem;
+  align-items: start;
+}
+.work:first-child { padding-top: 0; border-top: 0; }
+
+@media (min-width: 46rem) {
+  .work { grid-template-columns: 14rem minmax(0, 1fr); gap: 2rem; }
+}
+
+.work h3 { color: var(--text); max-width: var(--measure); }
+.work h3 a { color: inherit; }
+.work h3 a:hover { color: var(--accent); text-decoration: none; }
+.work p { max-width: var(--measure); color: var(--text-muted); }
+
+/* chips: venue / year / status */
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .4rem;
+  margin: 0 0 .6rem;
+}
+
+.chip {
+  display: inline-block;
+  font-size: .71rem;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  padding: .18rem .5rem;
+  border-radius: 5px;
+  background: var(--bg-alt);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+.chip-venue { background: var(--accent-soft); color: var(--accent); border-color: transparent; }
+
+/* inline link row under an entry */
+
+.linkrow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem 1.15rem;
+  font-size: .89rem;
+  font-weight: 500;
+  margin: .9rem 0 0;
+}
+.linkrow a { display: inline-flex; align-items: center; gap: .3rem; }
+.linkrow svg { flex: none; opacity: .7; }
+
+/* thumbnails */
+
+.work-thumb {
+  display: block;
+  margin: 0;
+  max-width: 22rem;          /* keeps the stacked mobile layout from ballooning */
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #fff;          /* keeps white-background science figures readable in dark mode */
+  padding: .4rem;
+  box-shadow: var(--shadow-sm);
+  transition: border-color .15s, box-shadow .15s;
+}
+.work-thumb:hover { border-color: var(--accent); box-shadow: var(--shadow); }
+
+.work-thumb img { display: block; width: 100%; border-radius: 5px; }
+
+.work-thumb.thumb-plain { background: transparent; padding: 0; }
+
+@media (min-width: 46rem) {
+  .work-thumb { max-width: none; }
+}
+
+/* ==========================================================================
+   10. Publications
+   ========================================================================== */
+
+ol.pubs { list-style: none; padding: 0; margin: 0; counter-reset: pub; max-width: var(--measure); }
+
+ol.pubs li {
+  counter-increment: pub;
+  display: grid;
+  grid-template-columns: 1.9rem 1fr;
+  gap: .75rem;
+  margin-bottom: 1.15rem;
+  font-size: .95rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+ol.pubs li:last-child { margin-bottom: 0; }
+
+ol.pubs li::before {
+  content: counter(pub);
+  font-variant-numeric: tabular-nums;
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--text-faint);
+  text-align: right;
+  padding-top: .16rem;
+}
+
+.pub-title { display: block; font-weight: 600; color: var(--text); margin: .1rem 0; }
+a.pub-title { color: var(--text); }
+a.pub-title:hover { color: var(--accent); }
+.pub-venue { font-style: italic; }
+.me { font-weight: 600; color: var(--text); }
+
+.status {
+  display: inline-block;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  padding: .1rem .4rem;
+  border-radius: 4px;
+  border: 1px solid var(--border-strong);
+  color: var(--text-muted);
+  vertical-align: .05em;
+}
+
+.footnote {
+  font-size: .85rem;
+  color: var(--text-faint);
+  margin-top: 1.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  max-width: var(--measure);
+}
+
+/* ==========================================================================
+   11. Talks
+   ========================================================================== */
+
+.talks { list-style: none; padding: 0; margin: 0; max-width: var(--measure); }
+
+.talks li {
+  padding: .85rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: .95rem;
+}
 .talks li:last-child { border-bottom: 0; }
-.talks strong { display: block; font-weight: 600; }
-.talks span { color: var(--text-muted); font-size: .9rem; }
+.talks strong { display: block; font-weight: 600; color: var(--text); line-height: 1.45; }
+.talks > li > span { display: block; color: var(--text-muted); font-size: .89rem; margin-top: .15rem; }
 
-/* ---------- contact ---------- */
+/* Specificity has to beat `.talks > li > span`, otherwise the badge is laid out
+   as a block and stretches the full width of the column. */
+.talks span.award,
+.award {
+  display: inline-block;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  padding: .1rem .45rem;
+  border-radius: 4px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  margin-left: .3rem;
+}
+
+/* ==========================================================================
+   12. Open source
+   ========================================================================== */
+
+.repos { display: grid; gap: 1.15rem; max-width: var(--measure); }
+
+.repo {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-card);
+  box-shadow: var(--shadow-sm);
+  padding: 1.4rem 1.5rem;
+}
+
+.repo h3 {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 1.02rem;
+  letter-spacing: -.005em;
+  color: var(--text);
+}
+.repo h3 a { display: inline-flex; align-items: center; gap: .45rem; color: inherit; }
+.repo h3 a:hover { color: var(--accent); text-decoration: none; }
+.repo h3 svg { flex: none; opacity: .55; }
+
+.repo p { color: var(--text-muted); font-size: .95rem; }
+.repo p:last-child { margin-bottom: 0; }
+
+/* ==========================================================================
+   13. Beyond research
+   ========================================================================== */
+
+.beyond-grid { display: grid; gap: 2rem; align-items: start; }
+@media (min-width: 52rem) {
+  .beyond-grid { grid-template-columns: minmax(0, 1fr) 14.5rem; gap: 3rem; }
+  .beyond-photo { position: sticky; top: calc(var(--nav-h) + 2rem); }
+}
+
+.beyond-grid h4:first-child { margin-top: 0; }
+
+/* Matches the hero portrait's footprint at both breakpoints. */
+.beyond-photo { margin: 0; max-width: 14.5rem; }
+@media (max-width: 51.99rem) {
+  .beyond-photo { max-width: 9.5rem; }
+}
+.beyond-photo img {
+  display: block;
+  width: 100%;
+  border-radius: 11px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+.beyond-photo figcaption { font-size: .85rem; color: var(--text-faint); margin-top: .55rem; }
+
+/* ==========================================================================
+   14. Contact
+   ========================================================================== */
 
 dl.contact {
   display: grid;
   grid-template-columns: max-content 1fr;
-  gap: .45rem 1.1rem;
-  margin: 1.2rem 0 0;
-  font-size: .96rem;
+  gap: .55rem 1.4rem;
+  margin: 1.5rem 0 0;
+  font-size: .95rem;
+  max-width: var(--measure);
 }
-
-dl.contact dt { color: var(--text-muted); }
+dl.contact dt { color: var(--text-faint); font-size: .82rem; text-transform: uppercase; letter-spacing: .06em; padding-top: .2rem; }
 dl.contact dd { margin: 0; }
 
-/* ---------- footer ---------- */
+/* ==========================================================================
+   15. Footer
+   ========================================================================== */
 
 footer {
   border-top: 1px solid var(--border);
   background: var(--bg-alt);
   padding: 2rem 0;
-  font-size: .9rem;
-  color: var(--text-muted);
+  font-size: .87rem;
+  color: var(--text-faint);
 }
-
-.skip {
-  position: absolute;
-  left: -9999px;
+.foot-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .5rem 1.5rem;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
+.foot-inner p { margin: 0; }
+.foot-links { display: flex; flex-wrap: wrap; gap: 1.1rem; list-style: none; padding: 0; margin: 0; }
+.foot-links a { color: var(--text-muted); }
 
+/* ==========================================================================
+   16. Utilities
+   ========================================================================== */
+
+.skip { position: absolute; left: -9999px; }
 .skip:focus {
-  left: .5rem;
-  top: .5rem;
-  z-index: 20;
+  left: .5rem; top: .5rem; z-index: 100;
   background: var(--bg-card);
-  padding: .5rem .8rem;
+  padding: .5rem .85rem;
   border-radius: 6px;
   border: 1px solid var(--accent);
 }
 
+html.js .reveal { opacity: 0; transform: translateY(12px); }
+html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity .55s ease, transform .55s ease; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  html.js .reveal, html.js .reveal.is-in { opacity: 1; transform: none; transition: none; }
+}
+
 @media (max-width: 34rem) {
   body { font-size: 16px; }
-  section { padding: 2.5rem 0; }
-  .nav-name { margin-right: 0; width: 100%; }
+  section { padding: 3rem 0; }
+  .hero { padding-top: 3rem; }
+  /* Stack each label above its value so long keys never collide with the text. */
+  .hero-facts li { display: block; }
+  .hero-facts .fact-key { display: block; width: auto; padding: 0 0 .1rem; }
+}
+
+@media print {
+  .nav, .btn-row, .icon-btn, footer, .portrait, .beyond-photo { display: none; }
+  section { padding: 1rem 0; border-top: 1px solid #ccc; }
+  a { color: #000; }
+  .work { display: block; }
+  .work-thumb { display: none; }
 }
 </style>
 </head>
@@ -325,231 +764,285 @@ footer {
 <nav class="nav" aria-label="Main">
   <div class="nav-inner">
     <a class="nav-name" href="#top">Tianchu Zeng</a>
-    <a href="#about">About</a>
-    <a href="#research">Research &amp; Publications</a>
-    <a href="#beyond">Beyond Research</a>
-    <a href="#contact">CV / Contact</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#work">Selected Work</a>
+      <a href="#publications">Publications</a>
+      <a href="#talks">Talks</a>
+      <a href="#open-source">Open Source</a>
+      <a href="#beyond">Beyond Research</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button id="theme-toggle" class="icon-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg class="i-sun" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 1.8v2.4M12 19.8v2.4M4.3 4.3l1.7 1.7M18 18l1.7 1.7M1.8 12h2.4M19.8 12h2.4M4.3 19.7L6 18M18 6l1.7-1.7"/></svg>
+      <svg class="i-moon" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 13.1A8.6 8.6 0 1 1 10.9 3.2a6.8 6.8 0 0 0 9.9 9.9z"/></svg>
+    </button>
   </div>
 </nav>
 
 <main id="main">
 
-<!-- ================= HOME ================= -->
+<!-- ================= HERO ================= -->
 <section class="hero" id="top">
   <div class="wrap">
-    <h1>Tianchu Zeng</h1>
-    <p class="hero-role">PhD candidate in Electrical &amp; Computer Engineering at the National University of Singapore.</p>
-    <p class="hero-pitch">I study how machine learning can help us model and understand the brain, while developing more reliable methods for evaluating biomedical machine learning.</p>
+    <div class="hero-grid">
+      <div>
+        <h1>Tianchu Zeng</h1>
+        <p class="hero-role">PhD candidate in Electrical &amp; Computer Engineering, National University of Singapore</p>
+        <p class="hero-pitch">I study how machine learning can help us model and understand the brain, while developing more reliable methods for evaluating biomedical machine learning.</p>
 
-    <div class="btn-row">
-      <a class="btn btn-primary" href="#research">Explore my research</a>
-      <a class="btn" href="#publications">View publications</a>
-      <!-- TODO: add the CV file (e.g. assets/TianchuZeng-CV.pdf) and point this link at it. -->
-      <a class="btn" href="#contact">Download CV</a>
+        <ul class="hero-facts">
+          <li><span class="fact-key">Advisors</span><span>Prof. BT Thomas Yeo · Prof. Thomas E. Nichols</span></li>
+          <li><span class="fact-key">Focus</span><span>Biophysical brain models · Statistical validity in biomedical ML · Brain foundation models</span></li>
+          <li><span class="fact-key">Previously</span><span>Automation, Tsinghua University</span></li>
+        </ul>
+
+        <div class="btn-row">
+          <a class="btn btn-primary" href="#work">Selected work</a>
+          <a class="btn" href="assets/cv/TianchuZeng-CV-EN.pdf" download>
+            <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5v11M7.5 10.5 12 15l4.5-4.5M4.5 18.5h15"/></svg>CV (English)</a>
+          <a class="btn" href="assets/cv/TianchuZeng-CV-ZH.pdf" download>
+            <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5v11M7.5 10.5 12 15l4.5-4.5M4.5 18.5h15"/></svg><span lang="zh-Hans">简历（中文）</span></a>
+        </div>
+
+        <ul class="links">
+          <li><a href="mailto:tianchuzeng@gmail.com">
+            <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3 6.5 9 6 9-6"/></svg>Email</a></li>
+          <li><a href="https://scholar.google.com/citations?user=gLpj1qIAAAAJ&amp;hl=en" rel="me noopener">
+            <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3 1.8 8.6 12 14.2l10.2-5.6z"/><path d="M5.6 10.7v4.6c0 1.9 2.9 3.4 6.4 3.4s6.4-1.5 6.4-3.4v-4.6"/></svg>Google Scholar</a></li>
+          <li><a href="https://orcid.org/0009-0009-0773-4502" rel="me noopener">
+            <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9.2"/><path d="M8.6 8.2v8.1M8.6 6.1v.1M12.4 16.3V8.2h2.1a4 4 0 0 1 0 8.1z"/></svg>ORCID</a></li>
+          <li><a href="https://www.linkedin.com/in/tianchu-zeng-31a16926a" rel="me noopener">
+            <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4v11H3zM10 9.5h3.8v1.5h.06c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.77 2.5 4.77 5.75v6.7h-4v-5.94c0-1.42-.03-3.24-2.02-3.24-2.02 0-2.33 1.54-2.33 3.14v6.04H10z"/></svg>LinkedIn</a></li>
+          <li><a href="https://github.com/TianCZeng" rel="me noopener">
+            <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03a9.5 9.5 0 0 1 5 0c1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>GitHub</a></li>
+        </ul>
+      </div>
+
+      <figure class="portrait">
+        <img src="assets/images/portrait.jpg" alt="Portrait of Tianchu Zeng" width="800" height="1000">
+      </figure>
     </div>
+  </div>
+</section>
 
-    <ul class="links">
-      <li><a href="https://orcid.org/0009-0009-0773-4502">ORCID</a></li>
-      <li><a href="https://scholar.google.com/citations?user=gLpj1qIAAAAJ&amp;hl=en">Google Scholar</a></li>
-      <li><a href="https://github.com/TianCZeng">GitHub</a></li>
-      <li><a href="mailto:tianchuzeng@gmail.com">Email</a></li>
-      <!-- Optional: <li><a href="LINKEDIN-URL">LinkedIn</a></li> -->
+<!-- ================= NEWS ================= -->
+<!-- Newest first. Add the month once known, e.g. "Jun 2026" — the column is sized for it. -->
+<section id="news">
+  <div class="wrap reveal">
+    <header class="sec-head">
+      <p class="eyebrow">Recent</p>
+      <h2>News</h2>
+    </header>
+
+    <ul class="news">
+      <li>
+        <span class="news-date">2026</span>
+        <span><em>Nature Methods</em> paper on optimizing biophysical large-scale brain circuit models with deep neural networks — <strong>accepted in principle</strong>.</span>
+      </li>
+      <li>
+        <span class="news-date">May 2026</span>
+        <span>Preprint posted: <a href="https://doi.org/10.64898/2026.05.17.724301" rel="noopener">Widespread use of invalid statistical tests in biomedical machine learning</a> (bioRxiv).</span>
+      </li>
+      <li>
+        <span class="news-date">2026</span>
+        <span><strong>Best Poster Award, Basic Science</strong> — NUHS Scientific and Innovation Summit, Singapore.</span>
+      </li>
+      <li>
+        <span class="news-date">2025</span>
+        <span>Invited talk at the Asia-Pacific Computational and Cognitive Neuroscience Conference (AP-CCN), RIKEN, Japan.</span>
+      </li>
     </ul>
-  </div>
-</section>
-
-<!-- ================= CURRENT FOCUS ================= -->
-<section id="focus">
-  <div class="wrap">
-    <h2>Current focus</h2>
-    <div class="cards">
-      <article class="card">
-        <h3>Biophysical brain models</h3>
-        <p>I develop deep-learning methods to make expensive, large-scale brain circuit models more practical to optimize.</p>
-      </article>
-      <article class="card">
-        <h3>Reliable biomedical machine learning</h3>
-        <p>I investigate whether common statistical procedures genuinely support fair and reproducible comparisons between biomedical machine-learning algorithms.</p>
-      </article>
-      <article class="card">
-        <h3>Brain foundation models and scientific ML</h3>
-        <p>I explore how brain foundation models compare with classical methods for predicting meaningful phenotypic traits, and how scientific machine learning can be evaluated responsibly.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ================= SELECTED WORK ================= -->
-<section id="selected">
-  <div class="wrap">
-    <h2>Selected work</h2>
-    <div class="cards">
-      <article class="card">
-        <h3>Optimizing biophysical brain circuit models with deep neural networks</h3>
-        <p>We develop deep-learning methods for optimizing expensive, large-scale biophysical brain circuit models, making complex scientific models more practical to study.</p>
-        <div class="card-meta">
-          <span class="tag">Nature Methods</span>
-          <span>2026 · Accepted in principle</span>
-          <!-- TODO: add verified DOI / publisher link, then uncomment:
-          <span>· <a href="PUBLICATION-LINK-1">Read the paper</a></span>
-          <span>· <a href="POSTER-LINK">View poster</a></span>
-          -->
-        </div>
-      </article>
-
-      <article class="card">
-        <h3>Widespread use of invalid statistical tests in biomedical machine learning</h3>
-        <p>We examine how common statistical practices can undermine algorithm comparisons in biomedical machine learning and make recommendations for more reliable evaluation.</p>
-        <div class="card-meta">
-          <span class="tag">bioRxiv preprint</span>
-          <span>2026</span>
-          <!-- TODO: add verified preprint link, then uncomment:
-          <span>· <a href="PUBLICATION-LINK-6">Read the preprint</a></span>
-          -->
-        </div>
-      </article>
-
-      <article class="card">
-        <h3>Do Brain Foundation Models Perform Better in Phenotypic Prediction than Classical Models?</h3>
-        <p>We study whether brain foundation models offer practical predictive advantages over classical methods, with an emphasis on careful and meaningful evaluation.</p>
-        <div class="card-meta">
-          <span class="tag">In preparation</span>
-          <span>2026 · Preprint forthcoming</span>
-        </div>
-      </article>
-    </div>
-    <p class="small muted" style="margin-top:1.1rem">My work spans biophysical brain modelling, brain imaging, statistical methodology, and machine learning for complex scientific systems. <a href="#publications">Browse the complete publication list</a> to see the research in detail.</p>
   </div>
 </section>
 
 <!-- ================= ABOUT ================= -->
 <section id="about">
-  <div class="wrap">
-    <h2>About</h2>
+  <div class="wrap reveal">
+    <header class="sec-head">
+      <p class="eyebrow">Background</p>
+      <h2>About</h2>
+    </header>
 
-    <!-- TODO: add a portrait when ready.
-    <img src="assets/images/tianchu-portrait.jpg" alt="Portrait of Tianchu Zeng" style="max-width:100%;border-radius:10px;margin-bottom:1.5rem">
-    -->
+    <div class="prose">
+      <p>I am a PhD candidate in Electrical &amp; Computer Engineering at the National University of Singapore, where I work with Prof. BT Thomas Yeo and Prof. Thomas E. Nichols on machine learning in brain imaging. My research focuses on two closely connected questions: how to make complex biophysical brain models more efficient to study, and how to make biomedical machine-learning comparisons more statistically reliable.</p>
 
-    <p>I am a PhD candidate in Electrical &amp; Computer Engineering at the National University of Singapore, where I work with Prof. BT Thomas Yeo and Prof. Thomas E. Nichols on machine learning in brain imaging. My research focuses on two closely connected questions: how to make complex biophysical brain models more efficient to study, and how to make biomedical machine-learning comparisons more statistically reliable.</p>
+      <p>Before starting my PhD, I studied Automation at Tsinghua University. My undergraduate research included multi-agent trajectory prediction with neural networks, as well as projects in EEG analysis and DNA data encryption. Those experiences taught me to enjoy problems that sit between mathematical ideas, computation, and real systems. At NUS, that interest developed into work in computational neuroscience and scientific machine learning.</p>
 
-    <p>Before starting my PhD, I studied Automation at Tsinghua University. My undergraduate research included multi-agent trajectory prediction with neural networks, as well as projects in EEG analysis and DNA data encryption. Those experiences taught me to enjoy problems that sit between mathematical ideas, computation, and real systems. At NUS, that interest developed into work in computational neuroscience and scientific machine learning.</p>
+      <!-- <p>I like starting from a precise question and a small experiment that can distinguish between competing explanations. When a result is surprising, I examine the assumptions behind it, test strong baselines, and try to make the reasoning clear enough for someone outside the immediate project to follow. Reproducibility matters to me for a practical reason: a result becomes more valuable when other people can understand, test, and build on it.</p> -->
 
-    <p>I care about research that is useful, reproducible, and honest about uncertainty. When a result is surprising, I like to examine the assumptions behind it, test strong baselines, and make the reasoning clear enough for someone outside the immediate project to follow. I also enjoy building practical tools and communicating technical ideas in a way that invites people into the problem.</p>
-
-    <h4>How I work</h4>
-    <p>I like starting with a precise question and a small experiment that can distinguish between competing explanations. I care about reproducibility because a result becomes more valuable when other people can understand, test, and build on it. In collaboration, I try to contribute careful implementation, clear communication, and connections between ideas that may initially seem to belong to different fields.</p>
-
-    <h4>What I am learning</h4>
-    <p>I am continuing to learn about large-scale model training, scientific machine learning, research infrastructure, and how to communicate technical work to broader audiences. I am especially interested in the space where strong mathematical ideas become reliable, usable computational systems.</p>
+      <p>I am currently learning more about large-scale model training, research infrastructure, foundation models and agent systems, and how to communicate technical work to broader audiences. The space that interests me most is where strong mathematical ideas become reliable, usable computational systems.</p>
+    </div>
   </div>
 </section>
 
-<!-- ================= RESEARCH ================= -->
-<section id="research">
-  <div class="wrap">
-    <h2>Research</h2>
+<!-- ================= SELECTED WORK ================= -->
+<!-- Each entry = a thumbnail label on the left, the text on the right. The     -->
+<!-- thumbnail links to the full-resolution figure; keep its alt text accurate. -->
+<!-- Formal citations live once in #publications; no author lists here.         -->
+<!-- Figure sits on a white card; add class="thumb-plain" for dark figures.     -->
+<section id="work">
+  <div class="wrap reveal">
+    <header class="sec-head">
+      <p class="eyebrow">What I work on</p>
+      <h2>Selected Work</h2>
+    </header>
 
-    <p class="lede">My research sits at the intersection of machine learning, brain imaging, computational neuroscience, and statistical methodology. I am interested in methods that are not only powerful, but also interpretable, computationally practical, and evaluated in a way that supports trustworthy scientific conclusions.</p>
+    <p class="lede" style="margin-bottom:2.75rem">My research sits at the intersection of machine learning, brain imaging, computational neuroscience, and statistical methodology. I am interested in methods that are not only powerful, but also interpretable, computationally practical, and evaluated in a way that supports trustworthy scientific conclusions.</p>
 
-    <h4>Research themes</h4>
+    <div class="works">
 
-    <div class="cards">
-      <article class="card">
-        <h3>Optimizing biophysical brain circuit models</h3>
-        <p>Large-scale biophysical brain models can represent important aspects of brain organization, but they can also be expensive to simulate and optimize. I develop deep-learning methods that make these models more tractable, with the goal of enabling more efficient scientific investigation of complex brain systems.</p>
+      <!-- ---- 1. Biophysical brain circuit models ---- -->
+      <article class="work">
+        <a class="work-thumb" href="assets/images/work-biophysical-brain-models.png" target="_blank" rel="noopener">
+          <img src="assets/images/work-biophysical-brain-models.png" width="1600" height="835" loading="lazy" decoding="async"
+               alt="Figure: schematic of the feedback inhibition control mean field model — a structural connectivity matrix and regional FIC parameters feed a cortical surface model that generates excitatory and inhibitory synaptic time courses, whose ratio gives the excitation/inhibition ratio">
+        </a>
+
+        <div class="work-body">
+          <p class="chips">
+            <span class="chip chip-venue">Nature Methods</span>
+            <span class="chip">2026</span>
+            <span class="chip">Accepted in principle</span>
+          </p>
+          <h3><a href="https://doi.org/10.1101/2025.04.07.647497" rel="noopener">Optimizing biophysical large-scale brain circuit models with deep neural networks</a></h3>
+          <p>Large-scale biophysical models can reproduce important features of brain organization, but fitting one means numerically integrating the dynamics for every candidate parameter set — slow enough to constrain the questions you can realistically ask. We built <strong>DELSSOME</strong> (Deep Learning for Surrogate Statistics Optimization in Mean field modeling), which replaces that inner loop with a network that predicts directly whether a parameter set will produce realistic dynamics.</p>
+          <p>DELSSOME gives a 2000× speedup over Euler integration, and embedding it in an evolutionary optimization strategy yields a 50× speedup in feedback inhibition control (FIC) model estimation — while preserving the neurobiological insights the model is used for.</p>
+          <p class="linkrow">
+            <a href="https://doi.org/10.1101/2025.04.07.647497" rel="noopener">
+              <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>Preprint (bioRxiv)</a>
+          </p>
+        </div>
       </article>
-      <article class="card">
-        <h3>Statistical validity in biomedical machine learning</h3>
-        <p>Biomedical machine learning often compares many algorithms using cross-validation. I study whether the statistical procedures used in these comparisons support valid conclusions, and how seemingly reasonable evaluation choices can produce misleading rankings or overconfident claims.</p>
+
+      <!-- ---- 2. Statistical validity in biomedical ML ---- -->
+      <article class="work">
+        <a class="work-thumb" href="assets/images/work-statistical-validity.png" target="_blank" rel="noopener">
+          <img src="assets/images/work-statistical-validity.png" width="1600" height="818" loading="lazy" decoding="async"
+               alt="Figure: diagram of the SHARP procedure — a dataset is repeatedly split into two independent halves, producing pairs of independent training and test sets across many repetitions">
+        </a>
+
+        <div class="work-body">
+          <p class="chips">
+            <span class="chip chip-venue">bioRxiv preprint</span>
+            <span class="chip">2026</span>
+          </p>
+          <h3><a href="https://doi.org/10.64898/2026.05.17.724301" rel="noopener">Widespread use of invalid statistical tests in biomedical machine learning</a></h3>
+          <p>Cross-validation is the default way to compare biomedical prediction algorithms — and to make downstream scientific claims, such as ranking biomarkers. But performance estimates across folds are not independent, and standard tests like the paired <em>t</em>-test assume that they are, which inflates false positive rates.</p>
+          <p>In a PRISMA-guided meta-analysis of 210 studies in journals with impact factor ≥ 15, we found that <strong>97% ignored fold dependence</strong>. The problem spans scientific fields and is unaffected by impact factor, rigour-promoting policies, or open-science practices. We propose the <strong>SHARP</strong> (Split-HAlf RePeated) test, a small modification to cross-validation that makes the variance and the between-fold correlation separately estimable, and benchmark it against 12 existing tests.</p>
+          <p class="linkrow">
+            <a href="https://doi.org/10.64898/2026.05.17.724301" rel="noopener">
+              <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>Read the preprint</a>
+          </p>
+        </div>
       </article>
-      <article class="card">
-        <h3>Brain imaging and individual variation</h3>
-        <p>I also work on methods for extracting meaningful structure from brain-imaging data, including brain parcellation and prediction of phenotypic traits. This work asks how computational models can capture individual and developmental variation without losing scientific interpretability.</p>
+
+      <!-- ---- 3. Brain foundation models ---- -->
+      <article class="work">
+        <a class="work-thumb" href="assets/images/work-brain-foundation-models.png" target="_blank" rel="noopener">
+          <img src="assets/images/work-brain-foundation-models.png" width="1600" height="941" loading="lazy" decoding="async"
+               alt="Figure: neuroscience benchmark tasks are fed both to a brain foundation model pretrained on large-scale brain data and to kernel ridge regression, and their prediction performance is compared">
+        </a>
+
+        <div class="work-body">
+          <p class="chips">
+            <span class="chip">In preparation</span>
+            <span class="chip">Preprint forthcoming</span>
+          </p>
+          <h3>Do brain foundation models perform better in phenotypic prediction than classical models?</h3>
+          <p>Brain foundation models promise to transfer information across datasets and tasks. Whether that promise translates into better prediction of real phenotypes — rather than better numbers against a weak baseline — is an empirical question.</p>
+          <p>We benchmark brain foundation models against carefully tuned classical approaches such as kernel ridge regression on neuroscience prediction tasks, and ask under what conditions the additional complexity is justified.</p>
+        </div>
       </article>
-      <article class="card">
-        <h3>Brain foundation models</h3>
-        <p>Brain foundation models promise to transfer information across datasets and tasks. I am interested in evaluating whether these models actually improve phenotypic prediction over strong classical baselines, and in understanding when their additional complexity is justified.</p>
-      </article>
+
     </div>
-
-    <!-- TODO: add a research figure when cleared for publication.
-    <figure style="margin:2rem 0 0">
-      <img src="assets/images/brain-model-optimization.png" alt="Diagram showing deep-learning optimization of a large-scale biophysical brain circuit model" style="max-width:100%;border-radius:10px">
-      <figcaption class="small muted" style="margin-top:.5rem">Research on making large-scale biophysical brain models more practical to optimize.</figcaption>
-    </figure>
-    -->
   </div>
 </section>
 
 <!-- ================= PUBLICATIONS ================= -->
 <section id="publications">
-  <div class="wrap">
-    <h2>Publications</h2>
+  <div class="wrap reveal">
+    <header class="sec-head">
+      <p class="eyebrow">Full record</p>
+      <h2>Publications</h2>
+    </header>
 
-    <p class="muted small">Published articles, conference proceedings, and public or forthcoming manuscripts.</p>
+    <p class="lede">Published articles, conference proceedings, and public or forthcoming manuscripts. Titles link to the publisher page or preprint.</p>
 
     <h4>Peer-reviewed journal articles</h4>
-    <!--
-      TODO before launch: wrap each title in a link once the DOI / publisher page is verified, e.g.
-      <a href="https://doi.org/...">Optimizing biophysical large-scale brain circuit models…</a>
-    -->
     <ol class="pubs">
       <li>
-        <span class="me">Zeng, T.</span>*, Tian, F.*, Zhang, S., Li, X., Tan, A. P., Larsen, B., … &amp; Yeo, B. T. (2026).
-        <span class="pub-title">Optimizing biophysical large-scale brain circuit models with deep neural networks.</span>
-        <span class="pub-venue">Nature Methods.</span> <strong>Accepted in principle.</strong>
+        <div>
+          <span class="me">Zeng, T.</span>*, Tian, F.*, Zhang, S., Li, X., Tan, A. P., Larsen, B., … &amp; Yeo, B. T. (2026).
+          <a class="pub-title" href="https://doi.org/10.1101/2025.04.07.647497" rel="noopener">Optimizing biophysical large-scale brain circuit models with deep neural networks.</a>
+          <span class="pub-venue">Nature Methods.</span> <span class="status">Accepted in principle</span> · <a href="https://doi.org/10.1101/2025.04.07.647497" rel="noopener">bioRxiv preprint</a>
+        </div>
       </li>
       <li>
-        Qu, Y. L., Chen, J., Tam, A., Ooi, L. Q. R., Dhamala, E., Cocuzza, C. V., Zhang, S., <span class="me">Zeng, T.</span>, … &amp; Holmes, A. J. (2025).
-        <span class="pub-title">Distinct brain network features predict internalizing and externalizing traits in children, adolescents and adults.</span>
-        <span class="pub-venue">Nature Mental Health</span>, 1–12.
+        <div>
+          Qu, Y. L., Chen, J., Tam, A., Ooi, L. Q. R., Dhamala, E., Cocuzza, C. V., Zhang, S., <span class="me">Zeng, T.</span>, … &amp; Holmes, A. J. (2025).
+          <a class="pub-title" href="https://doi.org/10.1038/s44220-025-00388-5" rel="noopener">Distinct brain network features predict internalizing and externalizing traits in children, adolescents and adults.</a>
+          <span class="pub-venue">Nature Mental Health</span>, 3(3), 306–317.
+        </div>
       </li>
       <li>
-        Zhang, S., Larsen, B., Sydnor, V. J., <span class="me">Zeng, T.</span>, An, L., Yan, X., … &amp; Yeo, B. T. (2024).
-        <span class="pub-title">In vivo whole-cortex marker of excitation-inhibition ratio indexes cortical maturation and cognitive ability in youth.</span>
-        <span class="pub-venue">Proceedings of the National Academy of Sciences</span>, 121(23), e2318641121.
+        <div>
+          Zhang, S., Larsen, B., Sydnor, V. J., <span class="me">Zeng, T.</span>, An, L., Yan, X., … &amp; Yeo, B. T. (2024).
+          <a class="pub-title" href="https://doi.org/10.1073/pnas.2318641121" rel="noopener">In vivo whole-cortex marker of excitation-inhibition ratio indexes cortical maturation and cognitive ability in youth.</a>
+          <span class="pub-venue">Proceedings of the National Academy of Sciences</span>, 121(23), e2318641121.
+        </div>
       </li>
     </ol>
 
     <h4>Peer-reviewed conference proceedings</h4>
-    <ol class="pubs" start="4">
+    <ol class="pubs" style="counter-reset: pub 3">
       <li>
-        Gui, N.*, <span class="me">Zeng, T.</span>*, Hu, J., &amp; Zhang, Y. (2022).
-        <span class="pub-title">Visual-angle Attention Predictor: A multi-agent trajectory predictor based on variational auto-encoder.</span>
-        <span class="pub-venue">22nd COTA International Conference of Transportation Professionals (CICTP 2022)</span>, Changsha, China.
+        <div>
+          Gui, N.*, <span class="me">Zeng, T.</span>*, Hu, J., &amp; Zhang, Y. (2022).
+          <a class="pub-title" href="https://doi.org/10.1061/9780784484265.081" rel="noopener">Visual-Angle Attention Predictor: A multi-agent trajectory predictor based on variational auto-encoder.</a>
+          <span class="pub-venue">22nd COTA International Conference of Transportation Professionals (CICTP 2022)</span>, Changsha, China, 866–877.
+        </div>
       </li>
       <li>
-        <span class="me">Zeng, T.</span>*, Gui, N.*, Hu, J., &amp; Zhang, Y. (2022).
-        <span class="pub-title">Agents Separated Prediction Former: A novel multi-agent trajectory prediction model based on Transformer with 2D input.</span>
-        <span class="pub-venue">22nd ASCE International Conference on Transportation and Development (ICTD 2022)</span>, Seattle, USA.
+        <div>
+          <span class="me">Zeng, T.</span>*, Gui, N.*, Hu, J., &amp; Zhang, Y. (2022).
+          <a class="pub-title" href="https://doi.org/10.1061/9780784484326.018" rel="noopener">Agents-Separated Prediction-Former: A novel multi-agent trajectory prediction model based on Transformer with 2D input.</a>
+          <span class="pub-venue">22nd ASCE International Conference on Transportation and Development (ICTD 2022)</span>, Seattle, USA, 180–191.
+        </div>
       </li>
     </ol>
 
     <h4>Preprints and manuscripts</h4>
-    <ol class="pubs" start="6">
+    <ol class="pubs" style="counter-reset: pub 5">
       <li>
-        <span class="me">Zeng, T.</span>*, Li, H.*, Zhang, S.*, Tan, Y. Q., Tian, F., Orban, C., …, Nichols, T.<sup>+</sup>, &amp; Yeo, B. T.<sup>+</sup> (2026).
-        <span class="pub-title">Widespread use of invalid statistical tests in biomedical machine learning.</span>
-        <span class="pub-venue">bioRxiv</span> preprint.
+        <div>
+          <span class="me">Zeng, T.</span>*, Li, H.*, Zhang, S.*, Tan, Y. Q., Tian, F., Orban, C., …, Nichols, T.<sup>+</sup>, &amp; Yeo, B. T.<sup>+</sup> (2026).
+          <a class="pub-title" href="https://doi.org/10.64898/2026.05.17.724301" rel="noopener">Widespread use of invalid statistical tests in biomedical machine learning.</a>
+          <span class="pub-venue">bioRxiv</span> preprint.
+        </div>
       </li>
       <li>
-        Ling, Z., Dong, Z., <span class="me">Zeng, T.</span>, Lin, Y., Li, R., Che, W., Zhang, C., Holmes, A., An, L., Zhang, S., Zhou, J. H., &amp; Yeo, B. T. (2026).
-        <span class="pub-title">Do Brain Foundation Models Perform Better in Phenotypic Prediction than Classical Models?</span>
-        Manuscript in preparation; preprint forthcoming.
+        <div>
+          Ling, Z., Dong, Z., <span class="me">Zeng, T.</span>, Lin, Y., Li, R., Che, W., Zhang, C., Holmes, A., An, L., Zhang, S., Zhou, J. H., &amp; Yeo, B. T. (2026).
+          <span class="pub-title">Do Brain Foundation Models Perform Better in Phenotypic Prediction than Classical Models?</span>
+          <span class="status">In preparation</span>
+        </div>
       </li>
     </ol>
 
-    <p class="footnote">* Equal contribution / co-first author. <sup>+</sup> Co-corresponding author.</p>
+    <p class="footnote">* Equal contribution / co-first author. &nbsp;<sup>+</sup> Co-corresponding author.</p>
   </div>
 </section>
 
 <!-- ================= TALKS ================= -->
 <section id="talks">
-  <div class="wrap">
-    <h2>Talks and presentations</h2>
+  <div class="wrap reveal">
+    <header class="sec-head">
+      <p class="eyebrow">Speaking</p>
+      <h2>Talks and presentations</h2>
+    </header>
 
-    <h4>Invited talks</h4>
+    <h4 style="margin-top:0">Invited talks</h4>
     <ul class="talks">
       <li>
         <strong>Optimizing biophysical large-scale brain circuit models</strong>
@@ -565,7 +1058,7 @@ footer {
       </li>
       <li>
         <strong>Optimizing biophysical large-scale brain circuit models with deep neural networks</strong>
-        <span>NUHS Scientific and Innovation Summit 2026, Singapore · Poster · <strong>Best Poster Award, Basic Science</strong></span>
+        <span>NUHS Scientific and Innovation Summit 2026, Singapore · Poster <span class="award">Best Poster · Basic Science</span></span>
       </li>
       <li>
         <strong>Optimizing biophysical large-scale brain circuit models with deep neural networks</strong>
@@ -575,48 +1068,106 @@ footer {
   </div>
 </section>
 
+<!-- ================= OPEN SOURCE ================= -->
+<!-- One .repo card per repository. Copy the block, change the name, chips,   -->
+<!-- two paragraphs, and the two GitHub URLs. Newest or most substantial first.-->
+<section id="open-source">
+  <div class="wrap reveal">
+    <header class="sec-head">
+      <p class="eyebrow">Building in the open</p>
+      <h2>Open Source</h2>
+    </header>
+
+    <p class="lede" style="margin-bottom:2rem">I actively build and release small, useful tools — mostly around AI agents, reproducibility, and doing real work in plain local files rather than behind another web account. The same instinct drives this as drives the research: a system is only worth trusting if you can see what it did and check it.</p>
+
+    <div class="repos">
+
+      <article class="repo">
+        <p class="chips">
+          <span class="chip chip-venue">AI agents</span>
+          <span class="chip">Node.js</span>
+          <span class="chip">MIT</span>
+        </p>
+        <h3><a href="https://github.com/TianCZeng/admissions-ops" rel="noopener">
+          <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03a9.5 9.5 0 0 1 5 0c1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>admissions-ops</a></h3>
+        <p>A graduate-admissions workspace for AI agents. Give the agent an official program page and your own evidence files, and one prompt produces a sourced report, an eligibility matrix in which every unknown becomes a verification task instead of a guess, a tailored academic CV or admissions resume, and a statement draft — each claim traceable to an official URL or to something you actually wrote.</p>
+        <p>The architecture is the interesting part: <strong>the model authors every judgement, and a deterministic layer guards it.</strong> Thirteen validators reject anything that cannot be traced back to a source, so hallucinated claims and hand-edited artifacts fail the build, and nothing is marked final without human review. Everything stays as plain local files — no account, no server, no telemetry.</p>
+        <p class="linkrow">
+          <a href="https://github.com/TianCZeng/admissions-ops" rel="noopener">
+            <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>github.com/TianCZeng/admissions-ops</a>
+        </p>
+      </article>
+
+    </div>
+
+    <p class="footnote">More repositories are in progress — mostly teardowns and reimplementations of systems I want to understand properly, written up as I go. Issues and pull requests are welcome on anything here.</p>
+  </div>
+</section>
+
 <!-- ================= BEYOND RESEARCH ================= -->
 <section id="beyond">
-  <div class="wrap">
-    <h2>Beyond Research</h2>
+  <div class="wrap reveal">
+    <header class="sec-head">
+      <p class="eyebrow">Outside the lab</p>
+      <h2>Beyond Research</h2>
+    </header>
 
-    <p class="lede">Research is a big part of my life, but it is not the whole story. Outside the lab, I enjoy sports, hiking, swimming, and exploring imaginative worlds through games and stories.</p>
+    <p class="lede" style="margin-bottom:2rem">Research is a big part of my life, but it is not the whole story. Outside the lab, I enjoy sports, hiking, swimming, and exploring imaginative worlds through games and stories.</p>
 
-    <h4>Sports</h4>
-    <p>I play table tennis, badminton, and basketball. Table tennis has been a particularly important part of my life: I hold China's National Level II Athlete designation in table tennis. I enjoy the combination of quick decisions, movement, technique, and the friendly competitiveness that makes a good game memorable.</p>
+    <div class="beyond-grid">
+      <div class="prose">
+        <h4>Sports</h4>
+        <p>I play table tennis, badminton, and basketball. Table tennis has been a particularly important part of my life: I hold China's National Level II Athlete designation in table tennis. I enjoy the combination of quick decisions, movement, technique, and the friendly competitiveness that makes a good game memorable.</p>
+        <p>I also love hiking and swimming. Hiking gives me time to slow down, explore new places, and notice details that are easy to miss during a busy week. Swimming is one of my favourite ways to reset and keep moving.</p>
 
-    <h4>Outdoors</h4>
-    <p>I also love hiking and swimming. Hiking gives me time to slow down, explore new places, and notice details that are easy to miss during a busy week. Swimming is one of my favourite ways to reset and keep moving.</p>
+        <h4>Lord of Mysteries and Whackamon</h4>
+        <p>I am a big fan of <em>Lord of Mysteries</em>. That interest eventually led me to create <a href="https://whackamon.com" rel="noopener">Whackamon</a>, a free public mini-game inspired by the joy of making something small and entertaining for other people. The game has received thousands of visits and likes, which has been both surprising and genuinely fun to see.</p>
+        <p>If you are curious, <a href="https://whackamon.com" rel="noopener">try Whackamon</a>. It is free, quick to play, and — by my own entirely rigorous evaluation — <strong>the best whack-a-mole-style game in the world</strong>. Sample size: one. Statistical test: the invalid kind. You can see why I ended up working on that problem.</p>
+      </div>
 
-    <h4>Lord of Mysteries and Whackamon</h4>
-    <p>I am a big fan of <em>Lord of Mysteries</em>. That interest eventually led me to create <a href="https://whackamon.com">Whackamon</a>, a free public mini-game inspired by the joy of making something small and entertaining for other people. The game has received thousands of visits and likes, which has been both surprising and genuinely fun to see.</p>
-    <p>If you are curious, <a href="https://whackamon.com">try Whackamon</a>. It is free, quick to play, and made to be enjoyed.</p>
-
-    <!-- TODO: add a Whackamon screenshot only if you own or have permission to publish the image.
-    <img src="assets/images/whackamon-screenshot.png" alt="Screenshot of the Whackamon mini-game" style="max-width:100%;border-radius:10px;margin-top:1.25rem">
-    -->
+      <figure class="beyond-photo">
+        <img src="assets/images/beyond-research.jpg" width="900" height="1125" loading="lazy" decoding="async"
+             alt="Tianchu Zeng playing table tennis during a match">
+        <figcaption>Away from the desk.</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
 <!-- ================= CV / CONTACT ================= -->
 <section id="contact">
-  <div class="wrap">
-    <h2>CV / Contact</h2>
+  <div class="wrap reveal">
+    <header class="sec-head">
+      <p class="eyebrow">Get in touch</p>
+      <h2>CV &amp; Contact</h2>
+    </header>
 
-    <!-- TODO: replace CV-LINK with the CV file path (e.g. assets/TianchuZeng-CV.pdf) once uploaded. -->
-    <p>For a complete overview of my education, research experience, publications, presentations, awards, teaching, and technical skills, please see my CV.</p>
+    <div class="prose">
+      <p>I welcome conversations about machine learning, brain imaging, computational neuroscience, statistical methodology, scientific software, and research collaboration. I am also happy to hear from people interested in the ideas or projects shared on this site.</p>
+      <p class="muted small">My CV covers education, research experience, publications, presentations, awards, teaching, and technical skills. Both versions are the same document in different languages.</p>
+    </div>
 
-    <p>I welcome conversations about machine learning, brain imaging, computational neuroscience, statistical methodology, scientific software, and research collaboration. I am also happy to hear from people interested in the ideas or projects shared on this site.</p>
+    <div class="btn-row" style="margin-top:1.4rem">
+      <a class="btn btn-primary" href="mailto:tianchuzeng@gmail.com">Email me</a>
+      <a class="btn" href="assets/cv/TianchuZeng-CV-EN.pdf" download>
+        <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5v11M7.5 10.5 12 15l4.5-4.5M4.5 18.5h15"/></svg>CV — English (PDF)</a>
+      <a class="btn" href="assets/cv/TianchuZeng-CV-ZH.pdf" download>
+        <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5v11M7.5 10.5 12 15l4.5-4.5M4.5 18.5h15"/></svg><span lang="zh-Hans">简历 — 中文（PDF）</span></a>
+    </div>
 
     <dl class="contact">
       <dt>Email</dt>
       <dd><a href="mailto:tianchuzeng@gmail.com">tianchuzeng@gmail.com</a></dd>
+      <dt>LinkedIn</dt>
+      <dd><a href="https://www.linkedin.com/in/tianchu-zeng-31a16926a" rel="me noopener">tianchu-zeng-31a16926a</a></dd>
+      <dt>Scholar</dt>
+      <dd><a href="https://scholar.google.com/citations?user=gLpj1qIAAAAJ&amp;hl=en" rel="me noopener">Google Scholar profile</a></dd>
       <dt>ORCID</dt>
-      <dd><a href="https://orcid.org/0009-0009-0773-4502">0009-0009-0773-4502</a></dd>
-      <dt>Google Scholar</dt>
-      <dd><a href="https://scholar.google.com/citations?user=gLpj1qIAAAAJ&amp;hl=en">Profile</a></dd>
+      <dd><a href="https://orcid.org/0009-0009-0773-4502" rel="me noopener">0009-0009-0773-4502</a></dd>
       <dt>GitHub</dt>
-      <dd><a href="https://github.com/TianCZeng">TianCZeng</a></dd>
+      <dd><a href="https://github.com/TianCZeng" rel="me noopener">TianCZeng</a></dd>
+      <dt>Location</dt>
+      <dd>Singapore</dd>
     </dl>
   </div>
 </section>
@@ -624,11 +1175,120 @@ footer {
 </main>
 
 <footer>
-  <div class="wrap">
-    <p>Outside research, I play table tennis, badminton, and basketball, enjoy hiking and swimming, and make small playful projects. I am also a big fan of <em>Lord of Mysteries</em>—you can try my free mini-game, <a href="https://whackamon.com">Whackamon</a>.</p>
-    <p class="small">© 2026 Tianchu Zeng · <a href="mailto:tianchuzeng@gmail.com">tianchuzeng@gmail.com</a></p>
+  <div class="foot-inner">
+    <p>© 2026 Tianchu Zeng</p>
+    <ul class="foot-links">
+      <li><a href="mailto:tianchuzeng@gmail.com">Email</a></li>
+      <li><a href="https://scholar.google.com/citations?user=gLpj1qIAAAAJ&amp;hl=en" rel="me noopener">Scholar</a></li>
+      <li><a href="https://github.com/TianCZeng" rel="me noopener">GitHub</a></li>
+      <li><a href="https://whackamon.com" rel="noopener">Whackamon</a></li>
+      <li><a href="#top">Back to top</a></li>
+    </ul>
   </div>
 </footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ------------------------------------------------------------------
+     Colour theme toggle
+     ------------------------------------------------------------------ */
+  var root = document.documentElement;
+  var toggle = document.getElementById('theme-toggle');
+
+  function currentTheme() {
+    var set = root.getAttribute('data-theme');
+    if (set) return set;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+
+  if (toggle) {
+    toggle.addEventListener('click', function () {
+      var next = currentTheme() === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  }
+
+  /* ------------------------------------------------------------------
+     Nav: highlight the section currently in view
+     ------------------------------------------------------------------ */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+  var sections = navLinks
+    .map(function (a) { return document.querySelector(a.getAttribute('href')); })
+    .filter(Boolean);
+
+  if ('IntersectionObserver' in window && sections.length) {
+    var visible = new Set();
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) visible.add(e.target.id); else visible.delete(e.target.id);
+      });
+      var active = sections.filter(function (s) { return visible.has(s.id); })[0];
+      navLinks.forEach(function (a) {
+        a.classList.toggle('is-active', !!active && a.getAttribute('href') === '#' + active.id);
+      });
+    }, { rootMargin: '-25% 0px -65% 0px' });
+    sections.forEach(function (s) { spy.observe(s); });
+  }
+
+  /* ------------------------------------------------------------------
+     Gentle reveal on scroll (skipped when reduced motion is preferred)
+     ------------------------------------------------------------------ */
+  var reveals = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function showAll() { reveals.forEach(function (el) { el.classList.add('is-in'); }); }
+
+  if (!reduced && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.01 });
+    reveals.forEach(function (el) { io.observe(el); });
+    // Safety net: whatever has not revealed itself within 1.5s is shown regardless,
+    // so a stalled observer can never hide the page's content.
+    setTimeout(showAll, 1500);
+  } else {
+    showAll();
+  }
+})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Tianchu Zeng",
+  "url": "https://TianCZeng.github.io/",
+  "image": "https://TianCZeng.github.io/assets/images/portrait.jpg",
+  "jobTitle": "PhD Candidate in Electrical & Computer Engineering",
+  "email": "mailto:tianchuzeng@gmail.com",
+  "affiliation": {
+    "@type": "CollegeOrUniversity",
+    "name": "National University of Singapore"
+  },
+  "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": "Tsinghua University"
+  },
+  "knowsAbout": [
+    "Machine learning",
+    "Brain imaging",
+    "Computational neuroscience",
+    "Statistical methodology",
+    "Scientific machine learning"
+  ],
+  "sameAs": [
+    "https://orcid.org/0009-0009-0773-4502",
+    "https://scholar.google.com/citations?user=gLpj1qIAAAAJ&hl=en",
+    "https://github.com/TianCZeng",
+    "https://www.linkedin.com/in/tianchu-zeng-31a16926a"
+  ]
+}
+</script>
 
 </body>
 </html>
