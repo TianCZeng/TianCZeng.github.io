@@ -17,6 +17,7 @@ assets/
     work-statistical-validity.png
     work-brain-foundation-models.png
     beyond-research.jpg
+    whackamon-logo.webp
   cv/
     TianchuZeng-CV-EN.pdf           linked from the hero and the Contact section
     TianchuZeng-CV-ZH.pdf
@@ -25,7 +26,7 @@ docs/                               planning notes + image originals (git-ignore
 
 ## Page structure
 
-`Hero → News → About → Selected Work → Publications → Talks → Open Source → Beyond Research → CV & Contact`
+`Hero → News → About → Selected Work → Publications → Talks, Awards & Teaching → Open Source → Beyond Research → CV & Contact`
 
 The important rule: **each fact lives in exactly one place.**
 
@@ -38,6 +39,9 @@ The important rule: **each fact lives in exactly one place.**
 - **Open Source** is for released repositories: one `.repo` card each, chips + monospace
   name + two short paragraphs (what it does, then why it is built that way) + the GitHub
   link. Copy the existing card to add one.
+- **Talks, Awards & Teaching** groups by *title*, not by appearance: when one talk or poster
+  went to several venues, list the title once and put the venues in a nested `<ul class="venues">`
+  rather than repeating the title per venue.
 
 When adding a paper, add the citation to **Publications**. Only promote it to **Selected
 Work** if you have a figure and something to say about it beyond the citation.
@@ -67,8 +71,6 @@ deployed site than `file://` does.
 
 ## Still to do
 
-- [ ] Add months to the **News** entries where you know them — the date column is already
-      sized for `May 2026`-style labels. Only the bioRxiv preprint date is filled in.
 - [ ] Confirm the official English wording of the National Level II Athlete designation.
 - [ ] Swap the *Nature Methods* link from the bioRxiv preprint to the journal DOI once it
       is issued (two places: Selected Work entry 1, and Publications item 1).
@@ -76,4 +78,8 @@ deployed site than `file://` does.
       (two places: Selected Work entry 3, and Publications item 7).
 - [ ] Check the AI4X 2025 poster title — Google Scholar records it as *"Optimizing
       Biophysically-Plausible Large-Scale Circuit Models With Deep Neural Networks"*,
-      which differs from the title currently listed under Talks.
+      which differs from the title currently listed under Talks. The three posters now
+      share one grouped title, so if AI4X really used a different one it needs its own
+      entry rather than an edit to the shared title.
+- [ ] Add the itch.io URL to the Whackamon card if you want a second play link — the CV
+      mentions the release but the site currently links `whackamon.com` only.

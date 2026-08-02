@@ -15,8 +15,9 @@ the file and an `<img>` tag.
 | `work-statistical-validity.png`       | Selected Work → entry 2 thumbnail  | Wide         | 1600 × 818     |
 | `work-brain-foundation-models.png`    | Selected Work → entry 3 thumbnail  | Wide         | 1600 × 941     |
 | `beyond-research.jpg`                 | Beyond Research, right column      | 4:5 portrait | 900 × 1125     |
+| `whackamon-logo.webp`                 | Beyond Research → Whackamon card   | Wide, alpha  | 1200 × 726     |
 
-Keep every file **under ~500 KB**. The whole `assets/` folder is currently ~1.5 MB.
+Keep every file **under ~500 KB**. The whole `assets/` folder is currently ~1.9 MB.
 
 The untouched originals are kept in `docs/originals/` — that folder is git-ignored, so it
 stays on your machine and is never published. Re-crop from there rather than from the
@@ -76,6 +77,29 @@ tag in `index.html` from `class="work-thumb"` to `class="work-thumb thumb-plain"
   portrait — so crop it to read at that size.
 - Something real and candid rather than posed.
 - Update the caption in `index.html` (search for `Away from the desk.`) to match the photo.
+
+## Whackamon logo (`whackamon-logo.webp`)
+
+The only **WebP** on the site, and the only file with transparency. Both are deliberate:
+it is a photorealistic RGBA illustration, so palette-quantising it to fit a PNG under
+500 KB produces visible banding, while WebP at `-q 82` holds the gradients at ~220 KB.
+
+Regenerate from the original in `docs/originals/whackamon-logo.png` (1536 × 1024, 2.6 MB,
+about 73 % empty transparent margin). The crop below is the measured opaque bounding box
+plus ~14 px of breathing room:
+
+```bash
+ffmpeg -y -i docs/originals/whackamon-logo.png \
+  -vf "crop=1314:795:41:79,scale=1200:-2:flags=lanczos" -pix_fmt rgba /tmp/wm.png
+cwebp -q 82 -alpha_q 90 -m 6 /tmp/wm.png -o assets/images/whackamon-logo.webp
+```
+
+**Do not put this logo straight on the page background.** Measured on the actual pixels,
+the gold lettering (`#dcad3d`) is only 2.1:1 against white, and the crow (`#17141d`) is
+1.04:1 against the dark-theme background — one half or the other disappears in every
+theme. The `.game-art` rule in section 13 of the stylesheet therefore gives it a fixed
+slate → near-black gradient, light behind the bird and dark behind the lettering. If you
+swap the art, re-check both halves before touching that gradient.
 
 ## Alt text
 

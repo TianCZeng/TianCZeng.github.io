@@ -609,6 +609,23 @@ a.pub-title:hover { color: var(--accent); }
 .talks strong { display: block; font-weight: 600; color: var(--text); line-height: 1.45; }
 .talks > li > span { display: block; color: var(--text-muted); font-size: .89rem; margin-top: .15rem; }
 
+/* Several venues sharing one title. Nested inside a .talks li, so it must not
+   inherit the li border — the parent already draws the separator. */
+.venues { list-style: none; padding: 0; margin: .35rem 0 0; }
+.venues li {
+  position: relative;
+  padding: .12rem 0 .12rem .95rem;
+  border-bottom: 0;
+  color: var(--text-muted);
+  font-size: .89rem;
+}
+.venues li::before {
+  content: "·";
+  position: absolute;
+  left: .25rem;
+  color: var(--text-faint);
+}
+
 /* Specificity has to beat `.talks > li > span`, otherwise the badge is laid out
    as a block and stretches the full width of the column. */
 .talks span.award,
@@ -676,6 +693,39 @@ a.pub-title:hover { color: var(--accent); }
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
 }
+/* Whackamon card. The artwork is gold-on-dark: measured on the actual pixels,
+   the lettering (#dcad3d) only reaches 2.1:1 contrast on white, and the crow
+   (#17141d) is 1.04:1 against the dark theme background — invisible. So the
+   plaque carries its own gradient in both themes, light slate behind the bird
+   and near-black behind the gold. Same reasoning as .work-thumb's fixed white
+   background for white-on-white science figures. */
+.game-card {
+  max-width: var(--measure);
+  margin: 1.5rem 0 1.6rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-card);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: border-color .15s, box-shadow .15s;
+}
+.game-card:hover { border-color: var(--accent); box-shadow: var(--shadow); }
+
+.game-art {
+  display: block;
+  padding: 1rem 1.15rem;
+  background: linear-gradient(102deg, #5d636f 0%, #3a3f4a 38%, #1a1d24 72%, #101318 100%);
+}
+.game-art img { display: block; width: 100%; }
+
+.game-body { padding: 1.15rem 1.35rem 1.3rem; }
+.game-body > p { margin: 0 0 .95rem; color: var(--text-muted); font-size: .95rem; }
+
+@media (max-width: 34rem) {
+  .game-art { padding: .7rem .8rem; }
+  .game-body { padding: 1rem 1.1rem 1.1rem; }
+}
+
 .beyond-photo figcaption { font-size: .85rem; color: var(--text-faint); margin-top: .55rem; }
 
 /* ==========================================================================
@@ -749,7 +799,7 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity .55s ea
 }
 
 @media print {
-  .nav, .btn-row, .icon-btn, footer, .portrait, .beyond-photo { display: none; }
+  .nav, .btn-row, .icon-btn, footer, .portrait, .beyond-photo, .game-art { display: none; }
   section { padding: 1rem 0; border-top: 1px solid #ccc; }
   a { color: #000; }
   .work { display: block; }
@@ -794,7 +844,7 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity .55s ea
         <ul class="hero-facts">
           <li><span class="fact-key">Advisors</span><span>Prof. BT Thomas Yeo · Prof. Thomas E. Nichols</span></li>
           <li><span class="fact-key">Focus</span><span>Biophysical brain models · Statistical validity in biomedical ML · Brain foundation models</span></li>
-          <li><span class="fact-key">Previously</span><span>Automation, Tsinghua University</span></li>
+          <li><span class="fact-key">Previously</span><span>Department of Automation, Tsinghua University</span></li>
         </ul>
 
         <div class="btn-row">
@@ -837,7 +887,7 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity .55s ea
 
     <ul class="news">
       <li>
-        <span class="news-date">2026</span>
+        <span class="news-date">Jul 2026</span>
         <span><em>Nature Methods</em> paper on optimizing biophysical large-scale brain circuit models with deep neural networks — <strong>accepted in principle</strong>.</span>
       </li>
       <li>
@@ -845,11 +895,11 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity .55s ea
         <span>Preprint posted: <a href="https://doi.org/10.64898/2026.05.17.724301" rel="noopener">Widespread use of invalid statistical tests in biomedical machine learning</a> (bioRxiv).</span>
       </li>
       <li>
-        <span class="news-date">2026</span>
+        <span class="news-date">Apr 2026</span>
         <span><strong>Best Poster Award, Basic Science</strong> — NUHS Scientific and Innovation Summit, Singapore.</span>
       </li>
       <li>
-        <span class="news-date">2025</span>
+        <span class="news-date">Jul 2025</span>
         <span>Invited talk at the Asia-Pacific Computational and Cognitive Neuroscience Conference (AP-CCN), RIKEN, Japan.</span>
       </li>
     </ul>
@@ -867,7 +917,7 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity .55s ea
     <div class="prose">
       <p>I am a PhD candidate in Electrical &amp; Computer Engineering at the National University of Singapore, where I work with Prof. BT Thomas Yeo and Prof. Thomas E. Nichols on machine learning in brain imaging. My research focuses on two closely connected questions: how to make complex biophysical brain models more efficient to study, and how to make biomedical machine-learning comparisons more statistically reliable.</p>
 
-      <p>Before starting my PhD, I studied Automation at Tsinghua University. My undergraduate research included multi-agent trajectory prediction with neural networks, as well as projects in EEG analysis and DNA data encryption. Those experiences taught me to enjoy problems that sit between mathematical ideas, computation, and real systems. At NUS, that interest developed into work in computational neuroscience and scientific machine learning.</p>
+      <p>Before starting my PhD, I studied in the Department of Automation at Tsinghua University — despite the name, its curriculum corresponds closely to what is called Electrical &amp; Computer Engineering or EECS elsewhere, spanning signals and systems, control, machine learning, and computing. My undergraduate research included multi-agent trajectory prediction with neural networks, as well as projects in EEG analysis and DNA data encryption. Those experiences taught me to enjoy problems that sit between mathematical ideas, computation, and real systems. At NUS, that interest developed into work in computational neuroscience and scientific machine learning.</p>
 
       <!-- <p>I like starting from a precise question and a small experiment that can distinguish between competing explanations. When a result is surprising, I examine the assumptions behind it, test strong baselines, and try to make the reasoning clear enough for someone outside the immediate project to follow. Reproducibility matters to me for a practical reason: a result becomes more valuable when other people can understand, test, and build on it.</p> -->
 
@@ -906,8 +956,9 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity .55s ea
             <span class="chip">Accepted in principle</span>
           </p>
           <h3><a href="https://doi.org/10.1101/2025.04.07.647497" rel="noopener">Optimizing biophysical large-scale brain circuit models with deep neural networks</a></h3>
-          <p>Large-scale biophysical models can reproduce important features of brain organization, but fitting one means numerically integrating the dynamics for every candidate parameter set — slow enough to constrain the questions you can realistically ask. We built <strong>DELSSOME</strong> (Deep Learning for Surrogate Statistics Optimization in Mean field modeling), which replaces that inner loop with a network that predicts directly whether a parameter set will produce realistic dynamics.</p>
-          <p>DELSSOME gives a 2000× speedup over Euler integration, and embedding it in an evolutionary optimization strategy yields a 50× speedup in feedback inhibition control (FIC) model estimation — while preserving the neurobiological insights the model is used for.</p>
+          <p>Biophysical models let us reason mechanistically about the brain, from single-neuron dynamics up to large-scale circuits, and their parameters mean something biologically — many can even be measured directly. The unknown ones have to be fitted, and that is the bottleneck: every candidate parameter set requires numerically integrating the model's differential equations, which is far too slow for datasets the size of a population.</p>
+          <p>We built <strong>DELSSOME</strong> (Deep Learning for Surrogate Statistics Optimization in Mean field modeling), which skips the integration entirely and predicts directly whether a parameter set produces realistic brain dynamics. Across three large-scale circuit models it is <strong>1500–8000× faster</strong> than numerical integration at that judgement, and dropped into an evolutionary optimization strategy it makes parameter estimation <strong>50–100× faster</strong> without giving up agreement with numerical integration.</p>
+          <p>That changes what is affordable. Because of the compute cost, most studies simulate large-scale circuit models only at the group level; DELSSOME makes individual-level fitting of the feedback inhibition control (FIC) model practical. Collating <strong>12,005 individuals across 14 datasets</strong>, we derive the first normative trajectories of cortical excitation–inhibition ratio across the lifespan, which reveal sex differences and network-specific patterns.</p>
           <p class="linkrow">
             <a href="https://doi.org/10.1101/2025.04.07.647497" rel="noopener">
               <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>Preprint (bioRxiv)</a>
@@ -1038,8 +1089,8 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity .55s ea
 <section id="talks">
   <div class="wrap reveal">
     <header class="sec-head">
-      <p class="eyebrow">Speaking</p>
-      <h2>Talks and presentations</h2>
+      <p class="eyebrow">Speaking and service</p>
+      <h2>Talks, awards and teaching</h2>
     </header>
 
     <h4 style="margin-top:0">Invited talks</h4>
@@ -1050,19 +1101,42 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity .55s ea
       </li>
     </ul>
 
+    <!-- One entry per title; extra venues go in the nested .venues list rather than -->
+    <!-- repeating the title. That list must stay a real nested list, not a span, so  -->
+    <!-- the `.talks > li > span { display: block }` rule cannot claim each venue.    -->
     <h4>Conference presentations and posters</h4>
     <ul class="talks">
       <li>
         <strong>Optimizing biophysical large-scale brain circuit models with deep neural networks</strong>
-        <span>Organization for Human Brain Mapping (OHBM 2026), Bordeaux, France · Poster</span>
+        <ul class="venues">
+          <li>Organization for Human Brain Mapping (OHBM 2026) — Bordeaux, France</li>
+          <li>NUHS Scientific and Innovation Summit 2026 — Singapore <span class="award">Best Poster · Basic Science</span></li>
+          <li>AI4X 2025 — National University of Singapore</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h4>Awards</h4>
+    <ul class="talks">
+      <li>
+        <strong>Best Poster Award, Basic Science</strong>
+        <span>NUHS Scientific and Innovation Summit, Singapore · 2026</span>
       </li>
       <li>
-        <strong>Optimizing biophysical large-scale brain circuit models with deep neural networks</strong>
-        <span>NUHS Scientific and Innovation Summit 2026, Singapore · Poster <span class="award">Best Poster · Basic Science</span></span>
+        <strong>NUS Research Scholarship</strong>
+        <span>National University of Singapore · 2022–2026</span>
+      </li>
+    </ul>
+
+    <h4>Teaching</h4>
+    <ul class="talks">
+      <li>
+        <strong>EE2026 Digital Design</strong>
+        <span>Teaching Assistant · National University of Singapore</span>
       </li>
       <li>
-        <strong>Optimizing biophysical large-scale brain circuit models with deep neural networks</strong>
-        <span>AI4X 2025, National University of Singapore · Poster</span>
+        <strong>EE3731C Signal Processing</strong>
+        <span>Teaching Assistant · National University of Singapore</span>
       </li>
     </ul>
   </div>
@@ -1121,8 +1195,29 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity .55s ea
         <p>I also love hiking and swimming. Hiking gives me time to slow down, explore new places, and notice details that are easy to miss during a busy week. Swimming is one of my favourite ways to reset and keep moving.</p>
 
         <h4>Lord of Mysteries and Whackamon</h4>
-        <p>I am a big fan of <em>Lord of Mysteries</em>. That interest eventually led me to create <a href="https://whackamon.com" rel="noopener">Whackamon</a>, a free public mini-game inspired by the joy of making something small and entertaining for other people. The game has received thousands of visits and likes, which has been both surprising and genuinely fun to see.</p>
-        <p>If you are curious, <a href="https://whackamon.com" rel="noopener">try Whackamon</a>. It is free, quick to play, and — by my own entirely rigorous evaluation — <strong>the best whack-a-mole-style game in the world</strong>. Sample size: one. Statistical test: the invalid kind. You can see why I ended up working on that problem.</p>
+        <p>I am a big fan of <em>Lord of Mysteries</em>. That interest eventually led me to build <a href="https://whackamon.com" rel="noopener">Whackamon</a>, a free browser mini-game made for the simple pleasure of shipping something small and entertaining for other people. It has since collected thousands of visits and likes, which has been both surprising and genuinely fun to watch.</p>
+
+        <!-- The plaque behind the logo keeps its own gradient in both themes; see the -->
+        <!-- .game-art rule in section 13 of the stylesheet for why.                   -->
+        <div class="game-card">
+          <a class="game-art" href="https://whackamon.com" rel="noopener" aria-label="Play Whackamon">
+            <img src="assets/images/whackamon-logo.webp" width="1200" height="726" loading="lazy" decoding="async"
+                 alt="Whackamon logo: a small dark crow wearing a gold monocle, perched on an ornate golden branch beside the game's gold lettering">
+          </a>
+          <div class="game-body">
+            <p class="chips">
+              <span class="chip chip-venue">Browser game</span>
+              <span class="chip">TypeScript · React · Phaser</span>
+              <span class="chip">Free to play</span>
+            </p>
+            <p>A bilingual (English / <span lang="zh-Hans">中文</span>) whack-a-mole game with seven progression levels, dynamic difficulty, achievements, persistent local progress, and sound — built with React, Phaser, Vite, and Zustand, and packaged for mobile with Capacitor.</p>
+            <div class="btn-row" style="margin-bottom:0">
+              <a class="btn btn-primary" href="https://whackamon.com" rel="noopener">Play Whackamon</a>
+            </div>
+          </div>
+        </div>
+
+        <p>By my own entirely rigorous evaluation it is <strong>the best whack-a-mole-style game in the world</strong>. Sample size: one. Statistical test: the invalid kind. You can see why I ended up working on that problem.</p>
       </div>
 
       <figure class="beyond-photo">
@@ -1272,7 +1367,11 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity .55s ea
   },
   "alumniOf": {
     "@type": "CollegeOrUniversity",
-    "name": "Tsinghua University"
+    "name": "Tsinghua University",
+    "department": {
+      "@type": "Organization",
+      "name": "Department of Automation"
+    }
   },
   "knowsAbout": [
     "Machine learning",
