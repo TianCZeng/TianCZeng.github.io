@@ -34,7 +34,10 @@ The important rule: **each fact lives in exactly one place.**
   figure thumbnail on the left and the text on the right; the thumbnail is a visual label,
   not a display figure, so it has no caption and links to the full-size PNG. The section
   deliberately carries no author lists.
-- **Publications** carries the formal citations — authors, venue, year, links — once.
+- **Publications** carries the formal citations — authors, venue, year, links — once. The
+  three `<ol class="pubs">` blocks continue one shared counter with hard offsets
+  (`style="counter-reset: pub N"`), so adding an item to an earlier block means bumping N in
+  every later block.
 - **News** is the only place that repeats a milestone, and only as a dated one-liner.
 - **Open Source** is for released repositories: one `.repo` card each, chips + monospace
   name + two short paragraphs (what it does, then why it is built that way) + the GitHub
@@ -52,6 +55,9 @@ Work** if you have a figure and something to say about it beyond the citation.
   so keep filenames exactly as they are. See `assets/images/README.md`.
 - **CV** — overwrite the PDFs in `assets/cv/`. The buttons use `download`, so they save the
   file rather than opening it in a tab.
+- **Names** — the hero shows the English name in `<h1>` and the Chinese name below it in
+  `<p class="name-zh" lang="zh-Hans">`; the same pair is mirrored in the JSON-LD block as
+  `name` / `alternateName`.
 - **Dark mode** — follows the system setting; the header toggle overrides it and the choice
   is remembered in `localStorage`.
 - **Theme colours** — all in the `:root` custom properties at the top of the `<style>` block,
@@ -74,8 +80,12 @@ deployed site than `file://` does.
 - [ ] Confirm the official English wording of the National Level II Athlete designation.
 - [ ] Swap the *Nature Methods* link from the bioRxiv preprint to the journal DOI once it
       is issued (two places: Selected Work entry 1, and Publications item 1).
+- [ ] Add the *Nature Methods* **Research Briefing** DOI once it is published, and link the
+      title (two places: Publications item 2, and the Aug 2026 News line). Until then the
+      Briefing's own text is under embargo — keep the site to title plus status only.
 - [ ] Add a link for the brain-foundation-models manuscript when the preprint goes up
-      (two places: Selected Work entry 3, and Publications item 7).
+      (two places: Selected Work entry 3, and Publications item 8). It is deliberately kept
+      on the site but no longer listed in the CVs.
 - [ ] Check the AI4X 2025 poster title — Google Scholar records it as *"Optimizing
       Biophysically-Plausible Large-Scale Circuit Models With Deep Neural Networks"*,
       which differs from the title currently listed under Talks. The three posters now
