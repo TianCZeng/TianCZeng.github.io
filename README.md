@@ -21,8 +21,13 @@ assets/
   cv/
     TianchuZeng-CV-EN.pdf           linked from the hero and the Contact section
     TianchuZeng-CV-ZH.pdf
-docs/                               planning notes + image originals (git-ignored)
+docs/                               planning notes, image originals, and the master CV
+                                    (TianchuZeng_master_CV.docx) — git-ignored
 ```
+
+The master CV in `docs/` is the source of truth for facts on the page (advisors, research
+interests, projects, software). When it changes, export the two PDFs into `assets/cv/` and
+walk the sections below to sync the site.
 
 ## Page structure
 
@@ -41,7 +46,13 @@ The important rule: **each fact lives in exactly one place.**
 - **News** is the only place that repeats a milestone, and only as a dated one-liner.
 - **Open Source** is for released repositories: one `.repo` card each, chips + monospace
   name + two short paragraphs (what it does, then why it is built that way) + the GitHub
-  link. Copy the existing card to add one.
+  link. Copy an existing card to add one. Order is by substance, not date: research software
+  first (DELSSOME, CBIG), then side projects (admissions-ops), then repositories I only
+  contribute to — those get `class="repo repo-compact"`, a role chip, and a single
+  paragraph (see career-ops).
+- **Advisors** are named in two places and linked in both: the hero fact row and the first
+  About paragraph. Thomas Yeo → the Yeo lab page; Tom Nichols → his Google Scholar profile.
+  The Tsinghua advisors (Jianming Hu, Yi Zhang) are named in About only, unlinked.
 - **Talks, Awards & Teaching** groups by *title*, not by appearance: when one talk or poster
   went to several venues, list the title once and put the venues in a nested `<ul class="venues">`
   rather than repeating the title per venue.
@@ -93,3 +104,8 @@ deployed site than `file://` does.
       entry rather than an edit to the shared title.
 - [ ] Add the itch.io URL to the Whackamon card if you want a second play link — the CV
       mentions the release but the site currently links `whackamon.com` only.
+- [ ] Add homepage links for the Tsinghua advisors (Jianming Hu, Yi Zhang) in About once
+      the right pages are confirmed.
+- [ ] career-ops moved from `santifer/career-ops` to `career-ops-hq/career-ops`; the star
+      count chip on its card ("70k+") was correct on 2026-09-08 and will need bumping
+      occasionally.
