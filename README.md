@@ -25,31 +25,37 @@ docs/                               planning notes, image originals, and the mas
                                     (TianchuZeng_master_CV.docx) — git-ignored
 ```
 
-The master CV in `docs/` is the source of truth for facts on the page (advisors, research
-interests, projects, software). When it changes, export the two PDFs into `assets/cv/` and
-walk the sections below to sync the site.
+Use `docs/Memory.txt` and the current Word CVs for facts on the page (advisors, research
+interests, projects, software). Existing PDFs can lag the Word files. Export the two PDFs
+into `assets/cv/` when requested, and walk the sections below to sync the site.
 
 ## Page structure
 
 `Hero → News → About → Selected Work → Publications → Talks, Awards & Teaching → Open Source → Beyond Research → CV & Contact`
 
-The important rule: **each fact lives in exactly one place.**
+Keep formal citations in Publications. Brief achievement highlights may repeat near the
+top of the page, with the supporting methods, findings, and individual roles in Selected Work.
 
 - **Selected Work** explains *what the problem is and what we did*. Each entry is a small
   figure thumbnail on the left and the text on the right; the thumbnail is a visual label,
   not a display figure, so it has no caption and links to the full-size PNG. The section
   deliberately carries no author lists.
 - **Publications** carries the formal citations — authors, venue, year, links — once. The
-  three `<ol class="pubs">` blocks continue one shared counter with hard offsets
-  (`style="counter-reset: pub N"`), so adding an item to an earlier block means bumping N in
-  every later block.
-- **News** is the only place that repeats a milestone, and only as a dated one-liner.
-- **Open Source** is for released repositories: one `.repo` card each, chips + monospace
-  name + two short paragraphs (what it does, then why it is built that way) + the GitHub
-  link. Copy an existing card to add one. Order is by substance, not date: research software
-  first (DELSSOME, CBIG), then side projects (admissions-ops), then repositories I only
-  contribute to — those get `class="repo repo-compact"`, a role chip, and a single
-  paragraph (see career-ops).
+  three `<ol class="pubs">` blocks run journal articles → preprints and manuscripts →
+  conference proceedings, so current work sits above the 2022 undergraduate papers. They
+  continue one shared counter with hard offsets (`style="counter-reset: pub N"`), so adding
+  an item to an earlier block means bumping N in every later block. Author lists follow the
+  CV, including the `⁺` co-corresponding markers.
+- **News** records milestones as dated one-liners. The hero also highlights the
+  co-first-author Nature Methods study and the scale of the brain-modeling work.
+- **Open Source** is one `.repo` card each: chips + monospace name + two short paragraphs
+  (what it does and my contribution, then useful implementation details) + the GitHub link. Copy an existing card to
+  add one. Order is by substance, not date: research software first (DELSSOME, sharp-cv,
+  the SHARP agent workflow, CBIG), then side projects (admissions-ops), then repositories I
+  only contribute to — those get `class="repo repo-compact"`, a role chip, and a single
+  paragraph (see career-ops). A project that is built but not yet public keeps a card with a
+  `Release in preparation` chip, a plain (unlinked) `<h3>`, and no `.linkrow`; swap in the
+  repo slug and the link when it goes public. The SHARP agent workflow is the current one.
 - **Advisors** are named in two places and linked in both: the hero fact row and the first
   About paragraph. Thomas Yeo → the Yeo lab page; Tom Nichols → his Google Scholar profile.
   The Tsinghua advisors (Jianming Hu, Yi Zhang) are named in About only, unlinked.
@@ -64,8 +70,12 @@ Work** if you have a figure and something to say about it beyond the citation.
 
 - **Images** — overwrite the file of the same name in `assets/images/`. Paths are explicit,
   so keep filenames exactly as they are. See `assets/images/README.md`.
-- **CV** — overwrite the PDFs in `assets/cv/`. The buttons use `download`, so they save the
-  file rather than opening it in a tab.
+- **CV** — overwrite the PDFs in `assets/cv/`. The buttons use `target="_blank"`, so the PDF
+  opens in a new tab and the browser's own viewer handles saving.
+- **Job-search line** — the hero fact row has a `Next` entry saying I expect to complete my PhD
+  in 2027 and am seeking industry roles or postdoctoral positions in AI and neuroscience,
+  particularly AI for science and computational neuroscience, with a mailto link;
+  delete that one `<li>` when the search is over.
 - **Names** — the hero shows the English name in `<h1>` and the Chinese name below it in
   `<p class="name-zh" lang="zh-Hans">`; the same pair is mirrored in the JSON-LD block as
   `name` / `alternateName`.
@@ -75,6 +85,23 @@ Work** if you have a figure and something to say about it beyond the citation.
   with a matching dark set. Change them in both places.
 - **Adding a nav item** — add the link in `.nav-links` and give the section a matching `id`.
   The scroll-spy picks it up automatically.
+
+### Research wording
+
+- Introduce DELSSOME as a deep-learning framework, SHARP as a statistical method that
+  redesigns cross-validation, and CBIG as an open-source neuroimaging software repository.
+  Prefer these descriptions over full acronym expansions.
+- DELSSOME's 50–100× fitting speedup is relative to Euler-based optimization, excluding
+  one-time training-data generation and network training. Simulation remains for validation.
+  E/I estimates are model-derived; avoid unverified priority claims.
+- SHARP's 59% finding concerns re-analyzed studies whose abstract claims relied on invalid
+  tests: at least one supporting comparison lost significance after accounting for correlation.
+  It is not a percentage of claims or of all 184 reviewed studies.
+- Describe the agent workflow as based on SHARP's meta-analysis procedures. Its relationship
+  to the original review and the claimed 200+ paper count await clarification. Automated checks
+  should be described concretely, without implying guaranteed extraction or interpretation accuracy.
+- Keep brain-foundation-model comparisons both across foundation models and against classical
+  methods; use “Manuscript in preparation” until a public preprint is confirmed.
 
 ## Preview locally
 
@@ -95,8 +122,23 @@ deployed site than `file://` does.
       title (two places: Publications item 2, and the Aug 2026 News line). Until then the
       Briefing's own text is under embargo — keep the site to title plus status only.
 - [ ] Add a link for the brain-foundation-models manuscript when the preprint goes up
-      (two places: Selected Work entry 3, and Publications item 8). It is deliberately kept
+      (two places: Selected Work entry 3, and Publications item 7). It is deliberately kept
       on the site but no longer listed in the CVs.
+- [ ] Selected Work entry 2 is back to the split-half schematic as its thumbnail. The
+      prevalence panels (69% / 59% dot matrices) are the stronger *finding*, but they are
+      near-square and illegible at thumbnail size, where only the silhouette registers —
+      and their numbers are already bolded in the adjacent text. They are kept at
+      `docs/originals/SHARP_prevalence.png` and would work well as a display figure shown
+      at full width, just not as a label in the left column.
+- [ ] Both the CV and the site now say only "bioRxiv preprint / under review" for the SHARP
+      manuscript. Name the journal once it is accepted, not before.
+- [ ] Add the *Alzheimer's & Dementia* DOI once the paper is published, and link the title
+      (Publications item 3). It was accepted with no preprint and no DOI, so the entry is
+      currently title plus status only.
+- [ ] Add a PyPI link to the sharp-cv card once a release is verified. The site currently
+      directs readers to the repository for installation instructions.
+- [ ] Give the SHARP agent workflow card its repo slug and GitHub link when it goes public,
+      and drop the `Release in preparation` chip.
 - [ ] Check the AI4X 2025 poster title — Google Scholar records it as *"Optimizing
       Biophysically-Plausible Large-Scale Circuit Models With Deep Neural Networks"*,
       which differs from the title currently listed under Talks. The three posters now

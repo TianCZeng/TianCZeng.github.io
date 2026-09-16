@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tianchu Zeng — AI for Brain Imaging &amp; Computational Neuroscience</title>
-<meta name="description" content="Tianchu Zeng is a PhD candidate in Electrical &amp; Computer Engineering at the National University of Singapore, working on AI for science: reliable AI for brain imaging, biophysical brain models, statistical validity in biomedical machine learning, and brain and scientific foundation models.">
+<title>Tianchu Zeng — Computational Neuroscience &amp; AI for Science</title>
+<meta name="description" content="Tianchu Zeng is an NUS PhD candidate working in computational neuroscience and AI for science: deep learning for brain modeling, statistical evaluation of machine learning, brain foundation models, and AI-agent workflows for research.">
 <meta name="author" content="Tianchu Zeng">
 <link rel="canonical" href="https://TianCZeng.github.io/">
 
 <meta property="og:type" content="profile">
 <meta property="og:title" content="Tianchu Zeng">
-<meta property="og:description" content="PhD candidate working on reliable AI for brain imaging, computational neuroscience, and complex scientific systems.">
+<meta property="og:description" content="NUS PhD candidate developing deep-learning methods for brain modeling, statistical methods for machine-learning evaluation, and AI-agent workflows for scientific research.">
 <meta property="og:url" content="https://TianCZeng.github.io/">
 <meta property="og:image" content="https://TianCZeng.github.io/assets/images/portrait.jpg">
 <meta name="twitter:card" content="summary">
@@ -203,6 +203,14 @@ p:last-child { margin-bottom: 0; }
 
 .muted { color: var(--text-muted); }
 .small { font-size: .9rem; }
+
+/* Inline identifiers (API names, commands). No background: the surrounding cards
+   already carry one, and a second tint reads as a highlight rather than a code span. */
+code {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: .89em;
+  color: var(--text);
+}
 
 /* ==========================================================================
    4. Navigation
@@ -480,8 +488,13 @@ section:first-of-type { border-top: 0; }
 }
 .work:first-child { padding-top: 0; border-top: 0; }
 
-@media (min-width: 46rem) {
-  .work { grid-template-columns: 14rem minmax(0, 1fr); gap: 2rem; }
+/* Side by side only once there is room for a figure wide enough to read as a
+   figure. Below that the entry stacks (figure above text) rather than shrinking
+   the thumbnail: a half-size figure beside a full-height column leaves a well of
+   white under it. The body text is short by design, so above the breakpoint the
+   two columns finish at roughly the same height. */
+@media (min-width: 58rem) {
+  .work { grid-template-columns: minmax(0, 21rem) minmax(0, 1fr); gap: 2.25rem; }
 }
 
 .work h3 { color: var(--text); max-width: var(--measure); }
@@ -545,7 +558,7 @@ section:first-of-type { border-top: 0; }
 
 .work-thumb.thumb-plain { background: transparent; padding: 0; }
 
-@media (min-width: 46rem) {
+@media (min-width: 58rem) {
   .work-thumb { max-width: none; }
 }
 
@@ -855,12 +868,13 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity .55s ea
         <h1>Tianchu Zeng</h1>
         <p class="name-zh" lang="zh-Hans">曾天楚</p>
         <p class="hero-role">PhD candidate in Electrical &amp; Computer Engineering, National University of Singapore</p>
-        <p class="hero-pitch">I study how AI can help us model and understand the brain, while developing more reliable methods for evaluating AI models used in biomedical research.</p>
+        <p class="hero-pitch">My research combines computational neuroscience and AI for science. I develop deep-learning methods that make brain modeling faster, statistical methods for evaluating machine-learning models, and AI-agent workflows for scientific research.</p>
 
         <ul class="hero-facts">
           <li><span class="fact-key">Advisors</span><span><a href="https://sites.google.com/view/yeolab/thomas" rel="noopener">Prof. BT Thomas Yeo</a> · <a href="https://scholar.google.com/citations?user=OTJoPikAAAAJ&amp;hl=en" rel="noopener">Prof. Thomas E. Nichols</a></span></li>
-          <li><span class="fact-key">Focus</span><span>AI for science · Biophysical brain models · Statistical validity in biomedical AI · Brain and scientific foundation models</span></li>
+          <li><span class="fact-key">Highlights</span><span>Co-first-author study accepted for publication in <em>Nature Methods</em> · Brain-model fitting across <strong>12,005 participants</strong></span></li>
           <li><span class="fact-key">Previously</span><span>Department of Automation, Tsinghua University</span></li>
+          <li><span class="fact-key">Next</span><span>I expect to complete my PhD in 2027 and am seeking industry roles or postdoctoral positions in AI and neuroscience, particularly AI for science and computational neuroscience. <a href="mailto:tianchuzeng@gmail.com">Very welcome to get in touch</a> to discuss opportunities or potential collaborations!</span></li>
         </ul>
 
         <div class="btn-row">
@@ -904,16 +918,24 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity .55s ea
 
     <ul class="news">
       <li>
+        <span class="news-date">Sep 2026</span>
+        <span>Coauthored study linking excitation–inhibition imbalance, amyloid pathology, and cognition — <strong>accepted for publication</strong> in <em>Alzheimer’s &amp; Dementia</em>.</span>
+      </li>
+      <li>
+        <span class="news-date">Sep 2026</span>
+        <span>Major revision posted of the <a href="https://doi.org/10.64898/2026.05.17.724301" rel="noopener">SHARP preprint</a> (bioRxiv) — new title, a broader survey of the literature, and a re-analysis of what those studies claimed.</span>
+      </li>
+      <li>
         <span class="news-date">Aug 2026</span>
         <span>Invited <em>Nature Methods</em> <strong>Research Briefing</strong> accompanying the paper — <strong>accepted for publication</strong>.</span>
       </li>
       <li>
         <span class="news-date">Jul 2026</span>
-        <span><em>Nature Methods</em> paper on optimizing biophysical large-scale brain circuit models with deep neural networks — <strong>accepted in principle</strong>.</span>
+        <span>Co-first-author <strong>DELSSOME</strong> study on deep learning for biophysical brain-model fitting — <strong>accepted for publication</strong> in <em>Nature Methods</em>.</span>
       </li>
       <li>
         <span class="news-date">May 2026</span>
-        <span>Preprint posted: <a href="https://doi.org/10.64898/2026.05.17.724301" rel="noopener">Widespread use of invalid statistical tests in biomedical machine learning</a> (bioRxiv).</span>
+        <span>Co-first-author preprint posted: <a href="https://doi.org/10.64898/2026.05.17.724301" rel="noopener">Spurious model comparisons are widespread in biomedical artificial intelligence</a> (bioRxiv).</span>
       </li>
       <li>
         <span class="news-date">Apr 2026</span>
@@ -936,13 +958,9 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity .55s ea
     </header>
 
     <div class="prose">
-      <p>I am a PhD candidate in Electrical &amp; Computer Engineering at the National University of Singapore, where I have the good fortune to be advised by <a href="https://sites.google.com/view/yeolab/thomas" rel="noopener">Prof. BT Thomas Yeo</a> and co-advised by <a href="https://scholar.google.com/citations?user=OTJoPikAAAAJ&amp;hl=en" rel="noopener">Prof. Thomas E. Nichols</a> at the University of Oxford. My research focuses on two closely connected questions: how to make complex biophysical brain models more efficient to study, and how to make biomedical AI model comparisons more statistically reliable.</p>
+      <p>I am a PhD candidate in Electrical &amp; Computer Engineering at the National University of Singapore, advised by <a href="https://sites.google.com/view/yeolab/thomas" rel="noopener">Prof. BT Thomas Yeo</a> and co-advised by <a href="https://scholar.google.com/citations?user=OTJoPikAAAAJ&amp;hl=en" rel="noopener">Prof. Thomas E. Nichols</a> at the University of Oxford. I work on scalable brain modeling and statistically valid evaluation of biomedical AI, alongside brain foundation models and scientific software.</p>
 
-      <p>Before starting my PhD, I studied in the Department of Automation at Tsinghua University — despite the name, its curriculum corresponds closely to what is called Electrical &amp; Computer Engineering or EECS elsewhere, spanning signals and systems, control, machine learning, and computing. My undergraduate research, under Prof. Jianming Hu and Prof. Yi Zhang, focused on multi-agent trajectory prediction with neural networks; I am grateful to them for trusting an undergraduate with real research questions early on, which led to two co-first-authored conference papers and a granted patent. Alongside that I worked on projects in EEG analysis and DNA data encryption. Those experiences taught me to enjoy problems that sit between mathematical ideas, computation, and real systems. At NUS, that interest developed into work in computational neuroscience and AI for science.</p>
-
-      <!-- <p>I like starting from a precise question and a small experiment that can distinguish between competing explanations. When a result is surprising, I examine the assumptions behind it, test strong baselines, and try to make the reasoning clear enough for someone outside the immediate project to follow. Reproducibility matters to me for a practical reason: a result becomes more valuable when other people can understand, test, and build on it.</p> -->
-
-      <p>I am currently learning more about large-scale model training, research infrastructure, foundation models and agent systems, and how to communicate technical work to broader audiences. The space that interests me most is where strong mathematical ideas become reliable, usable computational systems.</p>
+      <p>Before NUS, I studied in the Department of Automation at Tsinghua University, with training in signals and systems, control, machine learning, and computing. My research with Prof. Jianming Hu and Prof. Yi Zhang on multi-agent traffic trajectory prediction led to two co-first-authored conference papers and a granted patent. I also worked on electroencephalography (EEG) analysis and DNA data encryption. I enjoy turning mathematical ideas into computational tools that other researchers can use and build on.</p>
     </div>
   </div>
 </section>
@@ -959,7 +977,7 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity .55s ea
       <h2>Selected Work</h2>
     </header>
 
-    <p class="lede" style="margin-bottom:2.75rem">My research sits at the intersection of AI for science, brain imaging, computational neuroscience, and statistical methodology. I am interested in methods that are not only powerful, but also interpretable, computationally practical, and evaluated in a way that supports trustworthy scientific conclusions — whether the model is a set of differential equations or a foundation model pretrained on brain data.</p>
+    <p class="lede" style="margin-bottom:2.75rem">I develop methods for fitting brain models at population scale and evaluating machine learning with statistically sound comparisons. These projects connect methodological advances with scientific questions about the brain.</p>
 
     <div class="works">
 
@@ -974,15 +992,17 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity .55s ea
           <p class="chips">
             <span class="chip chip-venue">Nature Methods</span>
             <span class="chip">2026</span>
-            <span class="chip">Accepted in principle</span>
+            <span class="chip">Accepted for publication</span>
           </p>
           <h3><a href="https://doi.org/10.1101/2025.04.07.647497" rel="noopener">Optimizing biophysical large-scale brain circuit models with deep neural networks</a></h3>
-          <p>Biophysical models let us reason mechanistically about the brain, from single-neuron dynamics up to large-scale circuits, and their parameters mean something biologically — many can even be measured directly. The unknown ones have to be fitted, and that is the bottleneck: every candidate parameter set requires numerically integrating the model's differential equations, which is far too slow for datasets the size of a population.</p>
-          <p>We built <strong>DELSSOME</strong> (Deep Learning for Surrogate Statistics Optimization in Mean field modeling), which skips the integration entirely and predicts directly whether a parameter set produces realistic brain dynamics. Across three large-scale circuit models it is <strong>1500–8000× faster</strong> than numerical integration at that judgement, and dropped into an evolutionary optimization strategy it makes parameter estimation <strong>50–100× faster</strong> without giving up agreement with numerical integration.</p>
-          <p>That changes what is affordable. Because of the compute cost, most studies simulate large-scale circuit models only at the group level; DELSSOME makes individual-level fitting of the feedback inhibition control (FIC) model practical. Collating <strong>12,005 individuals across 14 datasets</strong>, we derive the first normative trajectories of cortical excitation–inhibition ratio across the lifespan, which reveal sex differences and network-specific patterns.</p>
+          <p>Biophysical brain models describe how interacting populations of neurons produce brain activity. Fitting these models to data usually requires repeatedly solving differential equations, making studies of thousands of individuals computationally expensive.</p>
+          <p>I developed <strong>DELSSOME, a deep-learning framework for fitting biophysical brain models</strong>. It predicts how well candidate parameters fit observed connectivity data, avoiding repeated numerical simulation during optimization. It accelerates fitting by <strong>50–100×</strong> across three model families while preserving fitting accuracy in our experiments.</p>
+          <p>I co-led analyses of <strong>12,005 participants across 14 datasets</strong>, mapping lifespan changes in model-derived cortical excitation–inhibition (E/I) ratio: a decline through development and adulthood followed by a late-life increase. We also identified sex differences and a persistent gradient between sensory and association cortex.</p>
           <p class="linkrow">
             <a href="https://doi.org/10.1101/2025.04.07.647497" rel="noopener">
               <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>Preprint (bioRxiv)</a>
+            <a href="https://github.com/TianCZeng/DELSSOME" rel="noopener">
+              <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03a9.5 9.5 0 0 1 5 0c1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>DELSSOME on GitHub</a>
           </p>
         </div>
       </article>
@@ -999,12 +1019,15 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity .55s ea
             <span class="chip chip-venue">bioRxiv preprint</span>
             <span class="chip">2026</span>
           </p>
-          <h3><a href="https://doi.org/10.64898/2026.05.17.724301" rel="noopener">Widespread use of invalid statistical tests in biomedical machine learning</a></h3>
-          <p>Cross-validation is the default way to compare biomedical prediction algorithms — and to make downstream scientific claims, such as ranking biomarkers. But performance estimates across folds are not independent, and standard tests like the paired <em>t</em>-test assume that they are, which inflates false positive rates.</p>
-          <p>In a PRISMA-guided meta-analysis of 210 studies in journals with impact factor ≥ 15, we found that <strong>97% ignored fold dependence</strong>. The problem spans scientific fields and is unaffected by impact factor, rigour-promoting policies, or open-science practices. We propose the <strong>SHARP</strong> (Split-HAlf RePeated) test, a small modification to cross-validation that makes the variance and the between-fold correlation separately estimable, and benchmark it against 12 existing tests.</p>
+          <h3><a href="https://doi.org/10.64898/2026.05.17.724301" rel="noopener">Spurious model comparisons are widespread in biomedical artificial intelligence</a></h3>
+          <p>Cross-validation reuses data across training and testing splits, creating correlations that common statistical tests can overlook. This can make apparent performance improvements look more convincing than the evidence supports.</p>
+          <p>I co-developed <strong>SHARP, a statistical method that redesigns cross-validation</strong> to estimate variance and correlation and test whether model performance differences are supported by the data. Across <strong>420 simulation scenarios</strong>, it achieved the best balance of false-positive control and statistical power among 13 tests.</p>
+          <p>I co-led a review of <strong>184 biomedical AI studies across 30 fields</strong>; <strong>97% used tests that ignored between-fold correlation</strong>. Among re-analyzed studies whose abstract claims relied on invalid tests, <strong>59% had at least one supporting comparison lose statistical significance</strong> after accounting for this correlation.</p>
           <p class="linkrow">
             <a href="https://doi.org/10.64898/2026.05.17.724301" rel="noopener">
               <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>Read the preprint</a>
+            <a href="https://github.com/TianCZeng/sharp-cv" rel="noopener">
+              <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03a9.5 9.5 0 0 1 5 0c1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>sharp-cv on GitHub</a>
           </p>
         </div>
       </article>
@@ -1018,12 +1041,12 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity .55s ea
 
         <div class="work-body">
           <p class="chips">
-            <span class="chip">In preparation</span>
-            <span class="chip">Preprint forthcoming</span>
+            <span class="chip">Ongoing</span>
+            <span class="chip">Manuscript in preparation</span>
           </p>
-          <h3>Do brain foundation models perform better in phenotypic prediction than classical models?</h3>
-          <p>Brain foundation models promise to transfer information across datasets and tasks. Whether that promise translates into better prediction of real phenotypes — rather than better numbers against a weak baseline — is an empirical question.</p>
-          <p>We benchmark brain foundation models against carefully tuned classical approaches such as kernel ridge regression on neuroscience prediction tasks, and ask under what conditions the additional complexity is justified.</p>
+          <h3>Building and evaluating brain foundation models</h3>
+          <p>Brain foundation models are pretrained on large brain datasets for adaptation to downstream tasks. I build and fine-tune these models and benchmark phenotypic prediction: predicting individual traits from brain data.</p>
+          <p>We compare different foundation models with carefully tuned classical machine-learning methods, including kernel ridge regression, to understand when pretraining improves prediction.</p>
         </div>
       </article>
 
@@ -1039,15 +1062,15 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity .55s ea
       <h2>Publications</h2>
     </header>
 
-    <p class="lede">Published articles, conference proceedings, and public or forthcoming manuscripts. Titles link to the publisher page or preprint.</p>
+    <p class="lede">Published and accepted work, preprints, and manuscripts in preparation. Publisher and preprint links are provided where available.</p>
 
-    <h4>Peer-reviewed journal articles</h4>
+    <h4>Journal publications</h4>
     <ol class="pubs">
       <li>
         <div>
-          <span class="me">Zeng, T.</span>*, Tian, F.*, Zhang, S., Li, X., Tan, A. P., Larsen, B., … &amp; Yeo, B. T. (2026).
+          <span class="me">Zeng, T.</span>*, Tian, F.*, Zhang, S., Li, X., Tan, A. P., Larsen, B., … Yeo, B. T. T., &amp; Alzheimer’s Disease Neuroimaging Initiative (2026).
           <a class="pub-title" href="https://doi.org/10.1101/2025.04.07.647497" rel="noopener">Optimizing biophysical large-scale brain circuit models with deep neural networks.</a>
-          <span class="pub-venue">Nature Methods.</span> <span class="status">Accepted in principle</span> · <a href="https://doi.org/10.1101/2025.04.07.647497" rel="noopener">bioRxiv preprint</a>
+          <span class="pub-venue">Nature Methods.</span> <span class="status">Accepted for publication</span> · <a href="https://doi.org/10.1101/2025.04.07.647497" rel="noopener">bioRxiv preprint</a>
         </div>
       </li>
       <li>
@@ -1059,6 +1082,13 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity .55s ea
       </li>
       <li>
         <div>
+          Zhang, S.*, Roemer-Cassiano, S. N.*, Chong, J. R.*, …, <span class="me">Zeng, T.</span>, …, Alzheimer’s Disease Neuroimaging Initiative, Lai, M. K. P.<sup>+</sup>, Franzmeier, N.<sup>+</sup>, &amp; Yeo, B. T. T.<sup>+</sup> (2026).
+          <span class="pub-title">Excitation–inhibition imbalance links amyloid pathophysiology to cognition in non-demented individuals.</span>
+          <span class="pub-venue">Alzheimer’s &amp; Dementia.</span> <span class="status">Accepted for publication</span>
+        </div>
+      </li>
+      <li>
+        <div>
           Qu, Y. L., Chen, J., Tam, A., Ooi, L. Q. R., Dhamala, E., Cocuzza, C. V., Zhang, S., <span class="me">Zeng, T.</span>, … &amp; Holmes, A. J. (2025).
           <a class="pub-title" href="https://doi.org/10.1038/s44220-025-00388-5" rel="noopener">Distinct brain network features predict internalizing and externalizing traits in children, adolescents and adults.</a>
           <span class="pub-venue">Nature Mental Health</span>, 3(3), 306–317.
@@ -1066,15 +1096,33 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity .55s ea
       </li>
       <li>
         <div>
-          Zhang, S.*, Larsen, B.*, Sydnor, V. J.*, <span class="me">Zeng, T.</span>, An, L., Yan, X., … &amp; Yeo, B. T. (2024).
+          Zhang, S.*, Larsen, B.*, Sydnor, V. J.*, <span class="me">Zeng, T.</span>, An, L., Yan, X., …, Satterthwaite, T. D.<sup>+</sup>, &amp; Yeo, B. T. T.<sup>+</sup> (2024).
           <a class="pub-title" href="https://doi.org/10.1073/pnas.2318641121" rel="noopener">In vivo whole-cortex marker of excitation-inhibition ratio indexes cortical maturation and cognitive ability in youth.</a>
           <span class="pub-venue">Proceedings of the National Academy of Sciences</span>, 121(23), e2318641121.
         </div>
       </li>
     </ol>
 
+    <h4>Preprints and manuscripts</h4>
+    <ol class="pubs" style="counter-reset: pub 5">
+      <li>
+        <div>
+          <span class="me">Zeng, T.</span>*, Li, H.*, Zhang, S.*, Tan, Y. Q., Tian, F., Orban, C., …, Nichols, T. E.<sup>+</sup>, &amp; Yeo, B. T. T.<sup>+</sup> (2026).
+          <a class="pub-title" href="https://doi.org/10.64898/2026.05.17.724301" rel="noopener">Spurious model comparisons are widespread in biomedical artificial intelligence.</a>
+          <span class="pub-venue">bioRxiv</span> preprint.
+        </div>
+      </li>
+      <li>
+        <div>
+          Ling, Z., Dong, Z., <span class="me">Zeng, T.</span>, Lin, Y., Li, R., Che, W., Zhang, C., Holmes, A., An, L., Zhang, S., Zhou, J. H., &amp; Yeo, B. T. T. (2026).
+          <span class="pub-title">Do Brain Foundation Models Perform Better in Phenotypic Prediction than Classical Models?</span>
+          <span class="status">In preparation</span>
+        </div>
+      </li>
+    </ol>
+
     <h4>Peer-reviewed conference proceedings</h4>
-    <ol class="pubs" style="counter-reset: pub 4">
+    <ol class="pubs" style="counter-reset: pub 7">
       <li>
         <div>
           Gui, N.*, <span class="me">Zeng, T.</span>*, Hu, J., &amp; Zhang, Y. (2022).
@@ -1087,24 +1135,6 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity .55s ea
           <span class="me">Zeng, T.</span>*, Gui, N.*, Hu, J., &amp; Zhang, Y. (2022).
           <a class="pub-title" href="https://doi.org/10.1061/9780784484326.018" rel="noopener">Agents-Separated Prediction-Former: A novel multi-agent trajectory prediction model based on Transformer with 2D input.</a>
           <span class="pub-venue">22nd ASCE International Conference on Transportation and Development (ICTD 2022)</span>, Seattle, USA, 180–191.
-        </div>
-      </li>
-    </ol>
-
-    <h4>Preprints and manuscripts</h4>
-    <ol class="pubs" style="counter-reset: pub 6">
-      <li>
-        <div>
-          <span class="me">Zeng, T.</span>*, Li, H.*, Zhang, S.*, Tan, Y. Q., Tian, F., Orban, C., …, Nichols, T.<sup>+</sup>, &amp; Yeo, B. T.<sup>+</sup> (2026).
-          <a class="pub-title" href="https://doi.org/10.64898/2026.05.17.724301" rel="noopener">Widespread use of invalid statistical tests in biomedical machine learning.</a>
-          <span class="pub-venue">bioRxiv</span> preprint.
-        </div>
-      </li>
-      <li>
-        <div>
-          Ling, Z., Dong, Z., <span class="me">Zeng, T.</span>, Lin, Y., Li, R., Che, W., Zhang, C., Holmes, A., An, L., Zhang, S., Zhou, J. H., &amp; Yeo, B. T. (2026).
-          <span class="pub-title">Do Brain Foundation Models Perform Better in Phenotypic Prediction than Classical Models?</span>
-          <span class="status">In preparation</span>
         </div>
       </li>
     </ol>
@@ -1182,7 +1212,7 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity .55s ea
       <h2>Open Source</h2>
     </header>
 
-    <p class="lede" style="margin-bottom:2rem">I release the software behind my research, and I build small, useful tools on the side — mostly around AI agents, reproducibility, and doing real work in plain local files rather than behind another web account. The same instinct drives both: a system is only worth trusting if you can see what it did and check it.</p>
+    <p class="lede" style="margin-bottom:2rem">I develop and maintain scientific software and AI-agent tools, with an emphasis on reproducible analyses, source-referenced outputs, and practical workflows.</p>
 
     <div class="repos">
 
@@ -1195,12 +1225,41 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity .55s ea
         </p>
         <h3><a href="https://github.com/TianCZeng/DELSSOME" rel="noopener">
           <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03a9.5 9.5 0 0 1 5 0c1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>DELSSOME</a></h3>
-        <p>The official implementation of the <em>Nature Methods</em> study above. Given a functional-connectivity matrix and an FCD distribution for one person, a single command returns a cortical excitation–inhibition ratio map; group-level pipelines cover the pFIC, pMFM, and Hopf circuit models, and an R module fits the normative lifespan trajectories. </p>
-        <p>Pretrained cost predictors, runnable examples, documentation, and regression tests are all in the repository.</p>
+        <p>I lead development and maintenance of the official implementation for the <em>Nature Methods</em> study. It fits biophysical brain models to functional connectivity and functional connectivity dynamics, estimates model-derived cortical excitation–inhibition ratios, and validates fitted parameters through numerical simulation.</p>
+        <p>The repository includes individual- and group-level pipelines, pretrained models, lifespan-analysis tools, runnable examples, documentation, and regression tests.</p>
         <p class="linkrow">
           <a href="https://github.com/TianCZeng/DELSSOME" rel="noopener">
             <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>github.com/TianCZeng/DELSSOME</a>
         </p>
+      </article>
+
+      <article class="repo">
+        <p class="chips">
+          <span class="chip chip-venue">Scientific software</span>
+          <span class="chip">Python · scikit-learn</span>
+          <span class="chip">MIT</span>
+          <span class="chip">Lead developer</span>
+        </p>
+        <h3><a href="https://github.com/TianCZeng/sharp-cv" rel="noopener">
+          <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03a9.5 9.5 0 0 1 5 0c1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>sharp-cv</a></h3>
+        <p>I developed and publicly released the SHARP Python package for statistical model comparison under cross-validation. It implements the redesigned procedure from our preprint and works with scikit-learn estimators.</p>
+        <p>Results include the statistical test and the performance differences from each repetition, making the comparison inspectable. Installation instructions and usage details are in the repository.</p>
+        <p class="linkrow">
+          <a href="https://github.com/TianCZeng/sharp-cv" rel="noopener">
+            <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>github.com/TianCZeng/sharp-cv</a>
+        </p>
+      </article>
+
+      <article class="repo">
+        <p class="chips">
+          <span class="chip chip-venue">AI agents</span>
+          <span class="chip">Research tooling</span>
+          <span class="chip">Sole developer</span>
+          <span class="chip">Release in preparation</span>
+        </p>
+        <h3>SHARP meta-analysis agent workflow</h3>
+        <p>I independently developed an AI-agent workflow based on SHARP’s meta-analysis procedures to extract evidence and support reproducible statistical re-analysis of published model comparisons.</p>
+        <p>It produces source-referenced reports, records analysis inputs and outputs, and includes automated checks of evidence references and statistical results, plus selective second-agent review. I am preparing it for public release.</p>
       </article>
 
       <article class="repo">
@@ -1212,8 +1271,8 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity .55s ea
         </p>
         <h3><a href="https://github.com/ThomasYeoLab/CBIG" rel="noopener">
           <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03a9.5 9.5 0 0 1 5 0c1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>ThomasYeoLab/CBIG</a></h3>
-        <p>The Computational Brain Imaging Group’s shared codebase, where each published study lives on as a <em>stable project</em> that anyone can re-run. I authored and maintain <a href="https://github.com/ThomasYeoLab/CBIG/tree/master/stable_projects/fMRI_dynamics/Zeng2026_DELSSOME" rel="noopener">Zeng2026_DELSSOME</a>, the lab-standard release of the work above, and reviewed the pull request for <a href="https://github.com/ThomasYeoLab/CBIG/tree/master/stable_projects/fMRI_dynamics/Zhang2024_pFIC" rel="noopener">Zhang2024_pFIC</a>, the parametric feedback-inhibition-control model that DELSSOME builds on.</p>
-        <p>Getting code into CBIG means meeting the lab’s bar for reproducibility: unit tests, replication scripts, and documentation that let a stranger reproduce a figure years later. That discipline is a large part of why the stand-alone DELSSOME release looks the way it does.</p>
+        <p>I contribute code, pull-request reviews, and maintenance to <strong>CBIG, an open-source neuroimaging software repository</strong>.</p>
+        <p>I authored and maintain its <a href="https://github.com/ThomasYeoLab/CBIG/tree/master/stable_projects/fMRI_dynamics/Zeng2026_DELSSOME" rel="noopener">DELSSOME project</a>, with tests, replication scripts, and documentation to support reproducible research.</p>
         <p class="linkrow">
           <a href="https://github.com/ThomasYeoLab/CBIG" rel="noopener">
             <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>github.com/ThomasYeoLab/CBIG</a>
@@ -1229,8 +1288,8 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity .55s ea
         </p>
         <h3><a href="https://github.com/TianCZeng/admissions-ops" rel="noopener">
           <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03a9.5 9.5 0 0 1 5 0c1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>admissions-ops</a></h3>
-        <p>A graduate-admissions workspace for AI agents. Give the agent an official program page and your own evidence files, and one prompt produces a sourced report, an eligibility matrix in which every unknown becomes a verification task instead of a guess, a tailored academic CV or admissions resume, and a statement draft — each claim traceable to an official URL or to something you actually wrote.</p>
-        <p>The architecture is the interesting part: <strong>the model authors every judgement, and a deterministic layer guards it.</strong> Thirteen validators reject anything that cannot be traced back to a source, so hallucinated claims and hand-edited artifacts fail the build, and nothing is marked final without human review. Everything stays as plain local files — no account, no server, no telemetry.</p>
+        <p>I created an AI-agent workspace for graduate-application planning. It helps applicants assess programs against official requirements and their own evidence, producing source-referenced reports, eligibility checks, tailored CVs, and statement drafts.</p>
+        <p>Automated validators check source references, structured records, and consistency of generated documents. Missing evidence becomes a verification task, and drafts require human review. Workspace files are stored locally.</p>
         <p class="linkrow">
           <a href="https://github.com/TianCZeng/admissions-ops" rel="noopener">
             <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>github.com/TianCZeng/admissions-ops</a>
@@ -1290,7 +1349,7 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity .55s ea
               <span class="chip">TypeScript · React · Phaser</span>
               <span class="chip">Free to play</span>
             </p>
-            <p>A bilingual (English / <span lang="zh-Hans">中文</span>) whack-a-mole game with seven progression levels, dynamic difficulty, achievements, persistent local progress, and sound — built with React, Phaser, Vite, and Zustand, and packaged for mobile with Capacitor.</p>
+            <p>A bilingual (English / <span lang="zh-Hans">中文</span>) whack-a-mole game with seven progression levels, dynamic difficulty, achievements, and saved progress. Built with React and Phaser, with mobile packaging through Capacitor.</p>
             <div class="btn-row" style="margin-bottom:0">
               <a class="btn btn-primary" href="https://whackamon.com" rel="noopener">Play Whackamon</a>
             </div>

@@ -12,7 +12,7 @@ the file and an `<img>` tag.
 | ------------------------------------- | ---------------------------------- | ------------ | -------------- |
 | `portrait.jpg`                        | Hero, top right                    | 4:5 portrait | 800 × 1000     |
 | `work-biophysical-brain-models.png`   | Selected Work → entry 1 thumbnail  | Wide         | 1600 × 835     |
-| `work-statistical-validity.png`       | Selected Work → entry 2 thumbnail  | Wide         | 1600 × 818     |
+| `work-statistical-validity.png`       | Selected Work → entry 2 thumbnail  | Wide         | 1600 × 818      |
 | `work-brain-foundation-models.png`    | Selected Work → entry 3 thumbnail  | Wide         | 1600 × 941     |
 | `beyond-research.jpg`                 | Beyond Research, right column      | 4:5 portrait | 900 × 1125     |
 | `whackamon-logo.webp`                 | Beyond Research → Whackamon card   | Wide, alpha  | 1200 × 726     |
@@ -36,18 +36,23 @@ downsized copies in this folder.
 
 ## Selected-work figures (`work-*.png`)
 
-These render as a **~224 px thumbnail in the left column** of each Selected Work entry —
-a visual label, not a display figure. They carry **no caption**; the thumbnail links to
-the full-size PNG, which is what anyone who wants detail will open.
+These render at **~336 px in the left column** of each Selected Work entry (~192 px on
+mid-size screens). They carry **no caption**; the thumbnail links to the full-size PNG,
+which is what anyone who wants detail will open.
 
-- **1600 px wide** (height whatever the figure needs). The thumbnail only needs ~450 px,
-  but the click-through opens this file at full size, so keep it large.
+**Prefer wide figures — roughly 2:1.** The text beside a figure is short by design, so a
+wide figure lands at about the same height as the text and the two columns finish level.
+A square or portrait figure forces its column tall and leaves a well of white beside it.
+
+- **1600 px wide** (height whatever the figure needs). The thumbnail only needs ~700 px,
+  but the click-through opens this file at full size, so keep it large. Crop at the source
+  resolution rather than upscaling to hit 1600.
 - **PNG**, not JPG — JPG puts grey mush around thin strokes and axis labels.
 - **White or transparent background.** The site places figures on a white card in both
   light and dark mode, so white/transparent always looks right.
 - **Crop tightly.** Trim the whitespace your plotting tool adds. One panel or a small
   multi-panel schematic reads far better on a website than a full journal figure.
-- **The shape matters more than the detail.** At 224 px nobody reads the labels — what
+- **The shape matters more than the detail.** At 336 px nobody reads the labels — what
   registers is the silhouette, so pick the panel with the most recognisable structure.
   Detail is for the click-through.
 - Exporting from matplotlib:
