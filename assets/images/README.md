@@ -113,5 +113,5 @@ update its `alt="…"` — that is what screen readers and search engines read.
 
 ## The CV lives elsewhere
 
-CVs are **not** in this folder. They are in [`assets/cv/`](../cv/) as
-`TianchuZeng-CV-EN.pdf` and `TianchuZeng-CV-ZH.pdf`.
+The CV is **not** in this folder. It is in [`assets/cv/`](../cv/) as
+`TianchuZeng_Academic_CV.pdf`.

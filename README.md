@@ -19,14 +19,13 @@ assets/
     beyond-research.jpg
     whackamon-logo.webp
   cv/
-    TianchuZeng-CV-EN.pdf           linked from the hero and the Contact section
-    TianchuZeng-CV-ZH.pdf
+    TianchuZeng_Academic_CV.pdf     linked from the hero and the Contact section
 docs/                               planning notes, image originals, and the master CV
                                     (TianchuZeng_master_CV.docx) — git-ignored
 ```
 
 Use `docs/Memory.txt` and the current Word CVs for facts on the page (advisors, research
-interests, projects, software). Existing PDFs can lag the Word files. Export the two PDFs
+interests, projects, software). Existing PDFs can lag the Word files. Export the PDF
 into `assets/cv/` when requested, and walk the sections below to sync the site.
 
 ## Page structure
@@ -70,7 +69,7 @@ Work** if you have a figure and something to say about it beyond the citation.
 
 - **Images** — overwrite the file of the same name in `assets/images/`. Paths are explicit,
   so keep filenames exactly as they are. See `assets/images/README.md`.
-- **CV** — overwrite the PDFs in `assets/cv/`. The buttons use `target="_blank"`, so the PDF
+- **CV** — overwrite the PDF in `assets/cv/` (English only). The links use `target="_blank"`, so the PDF
   opens in a new tab and the browser's own viewer handles saving.
 - **Job-search line** — the hero fact row has a `Next` entry saying I expect to complete my PhD
   in 2027 and am seeking industry roles or postdoctoral positions in AI and neuroscience,
@@ -92,7 +91,8 @@ Work** if you have a figure and something to say about it beyond the citation.
   redesigns cross-validation, and CBIG as an open-source neuroimaging software repository.
   Prefer these descriptions over full acronym expansions.
 - DELSSOME's 50–100× fitting speedup is relative to Euler-based optimization, excluding
-  one-time training-data generation and network training. Simulation remains for validation.
+  one-time training-data generation and network training. The 1,500–8,000× figure is a
+  different metric: evaluating one candidate's fit vs. numerical simulation. Simulation remains for validation.
   E/I estimates are model-derived; avoid unverified priority claims.
 - SHARP's 59% finding concerns re-analyzed studies whose abstract claims relied on invalid
   tests: at least one supporting comparison lost significance after accounting for correlation.
